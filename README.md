@@ -59,7 +59,8 @@ ___
 
 
 ## Project progress
-![Login Screen](image.png)
+[![Login Screen Preview](Images/Login%20Screen.png)](Images/Login%20Screen.png)
+
 
 ### ✅ Completed Milestones
 
@@ -91,15 +92,15 @@ ___
 
 ### 🔄 In Progress
 
-- Member and loan page logic and styling  
-- Row selection styling and visual enhancements  
-- Validation and error handling improvements  
+- Member and loan page logic and styling
+- Row selection styling and visual enhancements
+- Validation and error handling improvements
 
 ### 🧠 Planned
 
-- Implement overdue loan tracking  
-- Create full loan issuance flow  
-- Add member registration and filtering  
-- Export reports (CSV/PDF)  
+- Implement overdue loan tracking
+- Create full loan issuance flow
+- Add member registration and filtering
+- Export reports (CSV/PDF)
 
 ---
