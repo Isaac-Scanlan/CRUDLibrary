@@ -1,0 +1,34 @@
+﻿<Page x:Class="CRUDLibrary.Views.Pages.InventoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CRUDLibrary.Views.Pages"
+      xmlns:components="clr-namespace:CRUDLibrary.Views.Controls" 
+      xmlns:viewmodels="clr-namespace:CRUDLibrary.ViewModels" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="InventoryPage">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel  Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <components:ClearableTextBox Text="{Binding Book, UpdateSourceTrigger=PropertyChanged}" Height="40" Width="230" Margin="10, 10, 10 ,10" Panel.ZIndex="1"/>
+            <components:RoundButton Command="{Binding SearchBookCommand}" HeightWidth="41" Margin="20, 10, 10 ,10" Panel.ZIndex="1" Grid.Row="1"/>
+            <components:AddButton Command="{Binding OpenPopupCommand}" Width="40" Height="40" Margin="20,10"/>
+            <components:EditButton Command="{Binding OpenEditPopupCommand}" Width="40" Height="40" Margin="20,10"/>
+            <Button Command="{Binding DeleteEntryCommand}" Style="{StaticResource DeleteButton}" Width="40" Height="40" Margin="20,10"/>
+        </StackPanel>
+
+        <components:DisplayTable  ItemsSource="{Binding BookTableCollection}" SelectedRow="{Binding SelectedBook, Mode=TwoWay}" Panel.ZIndex="1" MinHeight="250" MaxWidth="1200" 
+                                  VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Grid.Row="2" Margin="50,0,50,50" />
+
+    </Grid>
+</Page>

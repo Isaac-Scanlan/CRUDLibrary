@@ -1,0 +1,173 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CRUDLibrary.Views.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/CRUDLibrary;component/Resources/Colours.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="{x:Type local:DynamicButton}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="20" Opacity="0.2" ShadowDepth="5" Color="DarkSlateGray"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource ButtonGradientStartColor}" Offset="0"/>
+                    <GradientStop Color="{StaticResource ButtonGradientEndColor}" Offset="1"/>
+                    <GradientStop Color="{StaticResource ButtonGradientEndColor}" Offset="1.5"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DynamicButton}">
+                    <Border x:Name="BorderElement"
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="8"
+                            Opacity="0.55">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[0].Color" 
+                                        To="{StaticResource ButtonHoverGradientStartColor}" 
+                                        Duration="0:0:0.5"/>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[1].Color" 
+                                        To="{StaticResource ButtonHoverGradientStartColor}" 
+                                        Duration="0:0:0.5"/>
+
+                                    <DoubleAnimation 
+                                        Storyboard.TargetName="BorderElement"
+                                        Storyboard.TargetProperty="Opacity" 
+                                        To="1" Duration="0:0:0.25"/>
+
+                                    <DoubleAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[1].Offset" 
+                                        To="0.4" 
+                                        Duration="0:0:0.5"/>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[2].Color" 
+                                        To="{StaticResource ButtonHoverGradientEndColor}" 
+                                        Duration="0:0:0.5"/>
+
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.04" Duration="0:0:0.25"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.04" Duration="0:0:0.25"/>
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+
+                                    <DoubleAnimation 
+                                        Storyboard.TargetName="BorderElement"
+                                        Storyboard.TargetProperty="Opacity" 
+                                        To="0.5" Duration="0:0:0.25"/>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[0].Color" 
+                                        To="{StaticResource ButtonGradientStartColor}" Duration="0:0:0.5"/>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[1].Color" 
+                                        To="{StaticResource ButtonGradientEndColor}" Duration="0:0:0.5"/>
+
+                                    <DoubleAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[1].Offset" 
+                                        To="1" Duration="0:0:0.5"/>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[2].Color" 
+                                        To="{StaticResource ButtonGradientEndColor}" Duration="0:0:0.5"/>
+
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.4"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.4"/>
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+
+                        <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                            <BeginStoryboard x:Name="ClickPressStoryboard">
+                                <Storyboard>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[0].Color" 
+                                        To="{StaticResource ButtonPressedGradientStartColor}" Duration="0:0:0.01"/>
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[1].Color" 
+                                        To="{StaticResource ButtonPressedGradientEndColor}" Duration="0:0:0.01"/>
+
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.95" Duration="0:0:0.4"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.95" Duration="0:0:0.4"/>
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="PreviewMouseLeftButtonUp">
+                            <BeginStoryboard>
+                                <Storyboard>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[0].Color" 
+                                        To="{StaticResource ButtonHoverGradientStartColor}" 
+                                        Duration="0:0:0.5"/>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[1].Color" 
+                                        To="{StaticResource ButtonHoverGradientStartColor}" 
+                                        Duration="0:0:0.5"/>
+
+                                    <DoubleAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[1].Offset" 
+                                        To="0.4" 
+                                        Duration="0:0:0.5"/>
+
+                                    <ColorAnimation 
+                                        Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[2].Color" 
+                                        To="{StaticResource ButtonHoverGradientEndColor}" 
+                                        Duration="0:0:0.5"/>
+
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.04" Duration="0:0:0.25"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.04" Duration="0:0:0.25"/>
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

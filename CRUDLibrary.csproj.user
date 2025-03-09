@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Pages\InventoryPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\LoansPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\MembersPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\OverduePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\AddBookPopupWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Colours.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\InventoryPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\LoansPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\MembersPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\OverduePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Themes\AddButtonStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Themes\ClearableTextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Themes\DisplayTableStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Themes\DynamicButtonStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Themes\EditButtonStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Themes\RoundButtonStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\AddBookPopupWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
