@@ -1,0 +1,45 @@
+﻿<Window x:Class="CRUDLibrary.Views.Windows.MemberDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRUDLibrary.Views.Windows"
+        xmlns:components="clr-namespace:CRUDLibrary.Views.Controls" 
+        xmlns:viewmodels="clr-namespace:CRUDLibrary.ViewModels" 
+        mc:Ignorable="d"
+        Title="MemberDataWindow" 
+           Height="400" Width="600">
+
+    <Grid Margin="20">
+
+        <StackPanel VerticalAlignment="Center">
+
+            <StackPanel Orientation="Horizontal"  Margin="0,10">
+                <TextBlock Text="Name:  " Margin="0,0,30,0" VerticalAlignment="Center" Width="80"/>
+                <components:ClearableTextBox Height="40" Width="280"
+                                          Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Text="Phone:  " Margin="0,0,30,0" VerticalAlignment="Center" Width="80"/>
+                <components:ClearableTextBox Height="40" Width="280"
+                                         Text="{Binding NewAuthor, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Text="Email:  " Margin="0,0,30,0" VerticalAlignment="Center" Width="80"/>
+                <components:ClearableTextBox Height="40" Width="280"
+                                         Text="{Binding NewGenre, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <components:DynamicButton 
+            Content="Submit"
+            Command="{Binding SubmitCommand}"
+            Height="35"
+            Width="70"
+            HorizontalAlignment="Left"
+            Margin="110,10,0,0"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

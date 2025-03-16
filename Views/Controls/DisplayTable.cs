@@ -7,18 +7,16 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Markup;
 
 namespace CRUDLibrary.Views.Controls;
 
 /// <summary>
 /// Represents a custom data grid with additional features.
 /// </summary>
+[ContentProperty(nameof(Columns))] // This enables defining <DisplayTable.Columns> in XAML
 public class DisplayTable : DataGrid
 {
-    /// <summary>
-    /// Initializes the <see cref="DisplayTable"/> class.
-    /// Overrides the default style key to apply a custom style.
-    /// </summary>
     static DisplayTable()
     {
         DefaultStyleKeyProperty.OverrideMetadata(

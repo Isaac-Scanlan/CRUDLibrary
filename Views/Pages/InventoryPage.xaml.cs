@@ -1,6 +1,7 @@
 ﻿using CRUDLibrary.Services;
 using CRUDLibrary.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CRUDLibrary.Views.Pages;
@@ -23,4 +24,5 @@ public partial class InventoryPage : Page
 
         DataContext = viewModel;
     }
+
 }

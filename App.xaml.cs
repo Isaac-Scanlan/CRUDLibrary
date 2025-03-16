@@ -37,5 +37,6 @@ public partial class App : Application
         services.AddSingleton<LibraryService>();
         services.AddSingleton<IWindowService, WindowService>();
         services.AddTransient<InventoryPageViewModel>();
+        services.AddTransient<MembersPageViewModel>();
     }
 }

@@ -79,7 +79,7 @@ public partial class InventoryPageViewModel : ViewModelBase
     /// <param name="genre">The genre of the book.</param>
     private void OpenPopup(string title, string author, string genre)
     {
-        _windowService.ShowPopup(title, author, genre, result =>
+        _windowService.ShowBookPopup(title, author, genre, result =>
         {
             NewBookTableEntry = result;
         });

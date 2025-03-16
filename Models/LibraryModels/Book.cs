@@ -23,7 +23,7 @@ public record Book
     public string Author { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the ISBN (International Standard Book Number) of the book.
+    /// Gets or sets the ISBN (International Standard Member Number) of the book.
     /// </summary>
     public string ISBN { get; set; } = string.Empty;
 
