@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using CRUDLibrary.Views.Pages;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -13,39 +15,39 @@ public class MainWindowViewModel: ViewModelBase
     /// <summary>
     /// The currently displayed page in the main window.
     /// </summary>
-    private Page _currentViewModel;
+    private Page _currentPage;
 
     /// <summary>
     /// The view model for the Inventory Page.
     /// </summary>
-    private readonly Page _inventoryPageViewModel;
+    private readonly Page _inventoryPage;
 
     /// <summary>
     /// The view model for the Loans Page.
     /// </summary>
-    private readonly Page _loansPageViewModel;
+    private readonly Page _loansPage;
 
     /// <summary>
     /// The view model for the Members Page.
     /// </summary>
-    private readonly Page _membersPageViewModel;
+    private readonly Page _membersPage;
 
     /// <summary>
     /// The view model for the Overdue Page.
     /// </summary>
-    private readonly Page _overduePageViewModel;
+    private readonly Page _overduePage;
 
     /// <summary>
     /// Gets or sets the currently displayed page in the main window.
     /// Notifies the UI when the page changes.
     /// </summary>
-    public Page CurrentViewModel
+    public Page CurrentPage
     {
-        get => _currentViewModel;
+        get => _currentPage;
         set
         {
-            _currentViewModel = value;
-            OnPropertyChanged(nameof(CurrentViewModel));
+            _currentPage = value;
+            OnPropertyChanged(nameof(CurrentPage));
         }
     }
 
@@ -69,22 +71,29 @@ public class MainWindowViewModel: ViewModelBase
     /// </summary>
     public ICommand NavigateToOverduePage { get; }
 
+
+    private readonly ILogger<MainWindowViewModel> _logger;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// Sets up navigation commands and default page.
     /// </summary>
-    public MainWindowViewModel()
+    public MainWindowViewModel(ILogger<MainWindowViewModel> logger, InventoryPage inventoryPage, MembersPage membersPage)
     {
-        _inventoryPageViewModel = new InventoryPage();
-        _loansPageViewModel = new LoansPage();
-        _membersPageViewModel = new MembersPage();
-        _overduePageViewModel = new OverduePage();
+        _logger = logger;
 
-        _currentViewModel = _inventoryPageViewModel;
+        _inventoryPage = inventoryPage;
+        _loansPage = new LoansPage();
+        _membersPage = membersPage;
+        _overduePage = new OverduePage();
 
-        NavigateToInventoryPage = new RelayCommand(() => CurrentViewModel = _inventoryPageViewModel);
-        NavigateToLoansPage = new RelayCommand(() => CurrentViewModel = _loansPageViewModel);
-        NavigateToMembersPage = new RelayCommand(() => CurrentViewModel = _membersPageViewModel);
-        NavigateToOverduePage = new RelayCommand(() => CurrentViewModel = _overduePageViewModel);
+        _currentPage = _inventoryPage;
+
+        NavigateToInventoryPage = new RelayCommand(() => CurrentPage = _inventoryPage);
+        NavigateToLoansPage = new RelayCommand(() => CurrentPage = _loansPage);
+        NavigateToMembersPage = new RelayCommand(() => CurrentPage = _membersPage);
+        NavigateToOverduePage = new RelayCommand(() => CurrentPage = _overduePage);
+
+        _logger.LogInformation("MainWindowViewModel constructed");
     }
 }

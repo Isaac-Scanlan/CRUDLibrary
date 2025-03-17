@@ -22,6 +22,9 @@
     <Compile Update="Views\Windows\AddBookPopupWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\MemberDataWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
@@ -67,6 +70,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AddBookPopupWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\MemberDataWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

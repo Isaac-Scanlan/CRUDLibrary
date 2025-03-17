@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
 
-        <Frame Grid.Row="0" Content="{Binding CurrentViewModel}" NavigationUIVisibility="Hidden" />
+        <Frame Grid.Row="0" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
 
         <Rectangle Grid.Row="0" Style="{StaticResource Backdrop}" Panel.ZIndex="-2"/>
         <Rectangle Grid.Row="1" Style="{StaticResource BottomBar}" Panel.ZIndex="-1" Margin="0"/>

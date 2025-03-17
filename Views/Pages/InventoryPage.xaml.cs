@@ -14,14 +14,9 @@ public partial class InventoryPage : Page
     /// <summary>
     /// Initialises components for InventoryPage
     /// </summary>
-    public InventoryPage()
+    public InventoryPage(InventoryPageViewModel viewModel)
     {
         InitializeComponent();
-
-        // Resolve dependencies from DI container
-        var windowService = App.ServiceProvider?.GetRequiredService<IWindowService>();
-        var viewModel = App.ServiceProvider?.GetRequiredService<InventoryPageViewModel>();
-
         DataContext = viewModel;
     }
 

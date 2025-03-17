@@ -13,13 +13,9 @@ namespace CRUDLibrary.Views.Pages
         /// <summary>
         /// Initialises components for Members Page
         /// </summary>
-        public MembersPage()
+        public MembersPage(MembersPageViewModel viewModel)
         {
             InitializeComponent();
-
-            var windowService = App.ServiceProvider?.GetRequiredService<IWindowService>();
-            var viewModel = App.ServiceProvider?.GetRequiredService<MembersPageViewModel>();
-
             DataContext = viewModel;
         }
     }
