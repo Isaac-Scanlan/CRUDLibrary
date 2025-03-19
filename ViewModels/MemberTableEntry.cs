@@ -44,7 +44,7 @@ public class MemberTableEntry
     /// </summary>
     /// <param name="member">The member to convert.</param>
     /// <returns>A new instance of <see cref="MemberTableEntry"/> populated with member details.</returns>
-    public static MemberTableEntry ToBookTableEntry(LibraryMember member)
+    public static MemberTableEntry ToMemberTableEntry(LibraryMember member)
     {
         return new MemberTableEntry
         {
@@ -65,7 +65,7 @@ public class MemberTableEntry
     {
         foreach (var book in members)
         {
-            table.Add(ToBookTableEntry(book));
+            table.Add(ToMemberTableEntry(book));
         }
     }
 

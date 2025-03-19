@@ -27,7 +27,7 @@ public partial class MembersPageViewModel : ViewModelBase
     private ObservableCollection<MemberTableEntry> _memberTableCollection;
 
     /// <summary>
-    /// Command for searching books in the library.
+    /// Command for searching members in the library.
     /// </summary>
     public ICommand SearchMemberCommand { get; }
 
@@ -67,38 +67,163 @@ public partial class MembersPageViewModel : ViewModelBase
         _selectedMember = MemberTableEntry.Empty;
         _memberTableEntry = MemberTableEntry.Empty;
 
-        //SearchMemberCommand = new AsyncRelayCommand(SearchBooksAsync);
+        SearchMemberCommand = new AsyncRelayCommand(SearchMembersAsync);
         AddMemberCommand = new AsyncRelayCommand(AddNewMember);
-        //EditMemberCommand = new AsyncRelayCommand(EditBookInfo);
-        //DeleteMemberCommand = new AsyncRelayCommand(RemoveBook);
+        EditMemberCommand = new AsyncRelayCommand(EditMemberInfo);
+        DeleteMemberCommand = new AsyncRelayCommand(RemoveMember);
+    }
 
-        
-
-        MemberTableEntry.ToMemberTableEntry(_libraryService.GetMembersAsync().Result, _memberTableCollection);
+    /// <summary>
+    /// Initializes the ViewModel by loading the initial book collection.
+    /// </summary>
+    public async Task InitializeAsync()
+    {
+        await ReloadMemberCollectionAsync();
     }
 
     /// <summary>
     /// Opens a popup for adding or editing a book.
     /// </summary>
-    /// <param name="title">The title of the book.</param>
-    /// <param name="author">The author of the book.</param>
-    /// <param name="genre">The genre of the book.</param>
-    private void OpenPopup(string title, string author, string genre)
+    /// <param name="name">The name of the book.</param>
+    /// <param name="email">The email of the book.</param>
+    /// <param name="phoneNumber">The phoneNumber of the book.</param>
+    private void OpenPopup(string name, string email, string phoneNumber)
     {
-        _windowService.ShowMemberPopup(title, author, genre, result =>
+        _windowService.ShowMemberPopup(name, email, phoneNumber, result =>
         {
-            NewBookTableEntry = result;
+            NewMemberTableEntry = result;
         });
     }
 
     /// <summary>
-    /// Adds a new book to the inventory.
+    /// Adds a new member to the database.
     /// </summary>
     private async Task AddNewMember()
     {
         OpenPopup(string.Empty, string.Empty, string.Empty);
 
-        if (NewBookTableEntry is null)
+        if (NewMemberTableEntry is null)
+        {
+            return;
+        }
+
+        int newId = MemberTableCollection.Any()
+            ? MemberTableCollection.Max(entry => int.Parse(entry.Id)) + 1
+            : 0;
+
+        NewMemberTableEntry.Id = newId.ToString();
+        MemberTableCollection.Add(NewMemberTableEntry);
+
+        await _libraryService.AddMemberAsync(new LibraryMember
+        {
+            Id = newId,
+            Name = NewMemberTableEntry.Name,
+            Email= NewMemberTableEntry.Email,
+            PhoneNumber = NewMemberTableEntry.PhoneNumber,
+            LoanHistory = []
+        });
+
+        await ReloadMemberCollectionAsync();
+        NewMemberTableEntry = null;
+    }
+
+    /// <summary>
+    /// Edits an existing book entry in the inventory.
+    /// </summary>
+    private async Task EditMemberInfo()
+    {
+
+        if (SelectedMember is null || SelectedMember.Equals(BookTableEntry.Empty))
+        {
+            return;
+        }
+
+        OpenPopup(SelectedMember.Name, SelectedMember.Email, SelectedMember.PhoneNumber);
+
+        if (NewMemberTableEntry is null)
+        {
+            return;
+        }
+
+        var currentMember = (await _libraryService.GetMembersAsync(int.Parse(SelectedMember.Id))).FirstOrDefault();
+
+        if (currentMember is null)
+        {
+            return;
+        }
+
+
+        currentMember.Name = string.IsNullOrWhiteSpace(NewMemberTableEntry.Name) ? currentMember.Name : NewMemberTableEntry.Name;
+        currentMember.Email = string.IsNullOrWhiteSpace(NewMemberTableEntry.Email) ? currentMember.Email : NewMemberTableEntry.Email;
+        currentMember.PhoneNumber = string.IsNullOrWhiteSpace(NewMemberTableEntry.PhoneNumber) ? currentMember.PhoneNumber : NewMemberTableEntry.PhoneNumber;
+
+        await _libraryService.UpdateMemberAsync(currentMember);
+        await ReloadMemberCollectionAsync();
+
+        NewMemberTableEntry = null;
+    }
+
+    /// <summary>
+    /// Removes the selected book from the inventory.
+    /// </summary>
+    private async Task RemoveMember()
+    {
+
+        if (SelectedMember is null || SelectedMember.Equals(BookTableEntry.Empty))
+        {
+            return;
+        }
+
+        var currentMember = (await _libraryService.GetMembersAsync(int.Parse(SelectedMember.Id))).FirstOrDefault();
+
+        if (currentMember is null)
+        {
+            return;
+        }
+
+        await _libraryService.DeleteMemberAsync(currentMember);
+        await ReloadMemberCollectionAsync();
+    }
+
+    /// <summary>
+    /// Searches for books based on the input criteria.
+    /// </summary>
+    private async Task SearchMembersAsync()
+    {
+
+        var memberResults = await _libraryService.GetMemberName(Member);
+        _memberTableCollection.Clear();
+
+        MemberTableEntry.ToMemberTableEntry(memberResults, _memberTableCollection);
+
+    }
+
+    /// <summary>
+    /// Reloads the book collection from the library service.
+    /// </summary>
+    private async Task ReloadMemberCollectionAsync()
+    {
+        _memberTableCollection.Clear();
+
+        var members = await _libraryService.GetMembersAsync();
+        MemberTableEntry.ToMemberTableEntry(members, _memberTableCollection);
+    }
+
+
+
+
+
+
+
+
+    /// <summary>
+    /// Adds a new member to the Database.
+    /// </summary>
+    private async Task AddNewMembers()
+    {
+        OpenPopup(string.Empty, string.Empty, string.Empty);
+
+        if (NewMemberTableEntry is null)
         {
             return;
         }

@@ -19,6 +19,9 @@ namespace CRUDLibrary.Views.Windows
     /// </summary>
     public partial class MemberDataWindow : Window
     {
+        /// <summary>
+        /// Initialise components for Popup window
+        /// </summary>
         public MemberDataWindow()
         {
             InitializeComponent();

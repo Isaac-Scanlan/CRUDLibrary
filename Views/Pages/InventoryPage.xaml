@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:CRUDLibrary.Views.Pages"
       xmlns:components="clr-namespace:CRUDLibrary.Views.Controls" 
       xmlns:viewmodels="clr-namespace:CRUDLibrary.ViewModels" 
-      d:DataContext="{d:DesignInstance Type=viewmodels:InventoryPageViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="InventoryPage">

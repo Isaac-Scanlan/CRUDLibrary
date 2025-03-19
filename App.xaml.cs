@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace CRUDLibrary;
 
@@ -45,7 +46,7 @@ public partial class App : Application
     }
 
     /// <inheritdoc/>
-    protected override void OnStartup(StartupEventArgs e)
+    protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
 
@@ -58,8 +59,14 @@ public partial class App : Application
         try
         {
             Log.Information("(App.xaml.cs): Starting MainWindow");
-            var mainWindow = ServiceProvider!.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+            MainWindow = ServiceProvider!.GetRequiredService<MainWindow>();
+
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+            await Current.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            MainWindow.Show();
+            
         }
         catch (Exception ex)
         {
@@ -112,11 +119,11 @@ public partial class App : Application
 
         services.AddSingleton<MainWindowViewModel>();
 
-        services.AddDbContext<LibraryContext>(options => 
-        { 
-            options.UseSqlite("Data Source=library.db"); 
+        services.AddDbContext<LibraryContext>(options =>
+        {
+            options.UseSqlite("Data Source=library.db");
             // TODO: remove in production
-            options.EnableSensitiveDataLogging(); 
+            options.EnableSensitiveDataLogging();
         });
         services.AddSingleton<LibraryService>();
         services.AddSingleton<IWindowService, WindowService>();

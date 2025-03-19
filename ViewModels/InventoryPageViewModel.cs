@@ -126,7 +126,6 @@ public partial class InventoryPageViewModel : ViewModelBase
 
         await ReloadBookCollectionAsync();
         NewBookTableEntry = null;
-
     }
 
     /// <summary>
@@ -147,8 +146,7 @@ public partial class InventoryPageViewModel : ViewModelBase
             return;
         }
 
-        var currentBooks = await _libraryService.GetBooksAsync(int.Parse(SelectedBook.Id));
-        var currentBook = currentBooks.FirstOrDefault();
+        var currentBook = (await _libraryService.GetBooksAsync(int.Parse(SelectedBook.Id))).FirstOrDefault();
 
         if (currentBook is null)
         {

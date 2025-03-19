@@ -9,6 +9,10 @@ namespace CRUDLibrary.ViewModels;
 
 public partial class MembersPageViewModel
 {
+    /// <summary>
+    /// Gets or sets the collection of Members displayed in the Members table.
+    /// Notifies the UI when the collection is updated.
+    /// </summary>
     public ObservableCollection<MemberTableEntry> MemberTableCollection
     {
         get => _memberTableCollection;
@@ -23,13 +27,13 @@ public partial class MembersPageViewModel
     /// Gets or sets the new book entry created via the popup.
     /// Notifies the UI when the value changes.
     /// </summary>
-    public MemberTableEntry? NewBookTableEntry
+    public MemberTableEntry? NewMemberTableEntry
     {
         get => _memberTableEntry;
         set
         {
             _memberTableEntry = value;
-            OnPropertyChanged(nameof(NewBookTableEntry));
+            OnPropertyChanged(nameof(NewMemberTableEntry));
         }
     }
 
