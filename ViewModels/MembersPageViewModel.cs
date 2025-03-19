@@ -70,7 +70,7 @@ public partial class MembersPageViewModel : ViewModelBase
         //SearchMemberCommand = new AsyncRelayCommand(SearchBooksAsync);
         AddMemberCommand = new AsyncRelayCommand(AddNewMember);
         //EditMemberCommand = new AsyncRelayCommand(EditBookInfo);
-        //DeleteMemberCommand = new AsyncRelayCommand(Removebook);
+        //DeleteMemberCommand = new AsyncRelayCommand(RemoveBook);
 
         
 
@@ -104,7 +104,7 @@ public partial class MembersPageViewModel : ViewModelBase
         }
     }
 
-        private async Task AddDBData()
+    private async Task AddDBData()
     {
         var members = new List<LibraryMember>
         {

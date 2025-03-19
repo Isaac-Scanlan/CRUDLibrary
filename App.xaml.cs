@@ -1,6 +1,8 @@
-﻿using CRUDLibrary.Services;
+﻿using CRUDLibrary.Models.DBModels;
+using CRUDLibrary.Services;
 using CRUDLibrary.ViewModels;
 using CRUDLibrary.Views.Pages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Windows;
@@ -33,11 +35,11 @@ public partial class App : Application
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
 
-            Log.Information("Service provider built successfully.");
+            Log.Information("(App.xaml.cs): Service provider built successfully.");
         }
         catch (Exception ex)
         {
-            Log.Fatal(ex, "App initialization failed.");
+            Log.Fatal(ex, "(App.xaml.cs): App initialization failed.");
             throw;
         }
     }
@@ -47,7 +49,7 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
-        Log.Information("CRUD Library Starting up");
+        Log.Information("(App.xaml.cs): CRUD Library Starting up");
 
         ConfigureExceptionHandlers();
 
@@ -55,23 +57,21 @@ public partial class App : Application
 
         try
         {
-            Log.Information("Starting MainWindow");
-            var mainWindowViewModel = ServiceProvider!.GetRequiredService<MainWindowViewModel>();
-            var mainWindow = new MainWindow(mainWindowViewModel);
+            Log.Information("(App.xaml.cs): Starting MainWindow");
+            var mainWindow = ServiceProvider!.GetRequiredService<MainWindow>();
             mainWindow.Show();
         }
         catch (Exception ex)
         {
-            Log.Fatal(ex, "Failed to start MainWindow");
+            Log.Fatal(ex, "(App.xaml.cs): Failed to start MainWindow");
             throw;
         }
     }
 
-
     /// <inheritdoc/>
     protected override void OnExit(ExitEventArgs e)
     {
-        Log.Information("App Exiting");
+        Log.Information("(App.xaml.cs): App Exiting");
         Log.CloseAndFlush();
         base.OnExit(e);
     }
@@ -80,12 +80,12 @@ public partial class App : Application
     {
         AppDomain.CurrentDomain.UnhandledException += (s, ex) =>
         {
-            Log.Fatal(ex.ExceptionObject as Exception, "Unhandled Exception");
+            Log.Fatal(ex.ExceptionObject as Exception, "(App.xaml.cs): Unhandled Exception");
         };
 
         DispatcherUnhandledException += (s, ex) =>
         {
-            Log.Error(ex.Exception, "UI thread exception");
+            Log.Error(ex.Exception, "(App.xaml.cs): UI thread exception");
             ex.Handled = true;
         };
     }
@@ -100,6 +100,7 @@ public partial class App : Application
                 outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"))
             .CreateLogger();
 
+        Log.Information(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
         Log.Information("Logger configured.");
     }
 
@@ -107,8 +108,16 @@ public partial class App : Application
     {
         services.AddLogging(configure => configure.AddSerilog());
 
+        Log.Information("(App.xaml.cs): Registering Dependency injection services.");
+
         services.AddSingleton<MainWindowViewModel>();
 
+        services.AddDbContext<LibraryContext>(options => 
+        { 
+            options.UseSqlite("Data Source=library.db"); 
+            // TODO: remove in production
+            options.EnableSensitiveDataLogging(); 
+        });
         services.AddSingleton<LibraryService>();
         services.AddSingleton<IWindowService, WindowService>();
 
@@ -119,7 +128,7 @@ public partial class App : Application
         services.AddTransient<InventoryPage>();
         services.AddTransient<MembersPage>();
 
-        Log.Information("Dependency injection services registered.");
+        Log.Information("(App.xaml.cs): Dependency injection services registered.");
     }
 
     private static void ValidateServices()
@@ -127,10 +136,13 @@ public partial class App : Application
         var ViewModels = new Type[] {
                 typeof(MainWindowViewModel),
                 typeof(InventoryPageViewModel),
-                typeof(LoansPageViewModel),
                 typeof(MembersPageViewModel),
+                typeof(LibraryContext),
                 typeof(LibraryService),
-                typeof(IWindowService)
+                typeof(IWindowService),
+                typeof(MainWindow),
+                typeof(InventoryPage),
+                typeof(MembersPage)
             };
 
         foreach (var service in ViewModels)
@@ -138,11 +150,11 @@ public partial class App : Application
             try
             {
                 _ = ServiceProvider?.GetRequiredService(service);
-                Log.Debug($"Resolved service: {service.Name}");
+                Log.Debug($"(App.xaml.cs): Resolved service: {service.Name}");
             }
             catch (Exception ex)
             {
-                Log.Error(ex, $"Failed to resolve service: {service.Name}");
+                Log.Error(ex, $"(App.xaml.cs): Failed to resolve service: {service.Name}");
             }
         }
     }

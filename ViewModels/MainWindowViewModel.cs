@@ -89,11 +89,23 @@ public class MainWindowViewModel: ViewModelBase
 
         _currentPage = _inventoryPage;
 
-        NavigateToInventoryPage = new RelayCommand(() => CurrentPage = _inventoryPage);
-        NavigateToLoansPage = new RelayCommand(() => CurrentPage = _loansPage);
-        NavigateToMembersPage = new RelayCommand(() => CurrentPage = _membersPage);
-        NavigateToOverduePage = new RelayCommand(() => CurrentPage = _overduePage);
+        _logger.LogInformation("(MainWindowViewModel.cs): Pages successfully instantiated successfully.");
 
-        _logger.LogInformation("MainWindowViewModel constructed");
+        NavigateToInventoryPage = new RelayCommand(() => ChangePage(_inventoryPage, nameof(_inventoryPage)));
+        NavigateToLoansPage = new RelayCommand(() => ChangePage(_loansPage, nameof(_loansPage)));
+        NavigateToMembersPage = new RelayCommand(() => ChangePage(_membersPage, nameof(_membersPage)));
+        NavigateToOverduePage = new RelayCommand(() => ChangePage(_overduePage, nameof(_overduePage)));
+
+        _logger.LogInformation("(MainWindowViewModel.cs): Navigation commands initialized.");
+
+        _logger.LogInformation("(MainWindowViewModel.cs): MainWindowViewModel constructed");
     }
+
+    private void ChangePage(Page newPage, string pageName)
+    {
+        _logger.LogInformation($"(MainWindowViewModel.cs): Navigating to {pageName}.");
+        CurrentPage = newPage;
+    }
+
+
 }

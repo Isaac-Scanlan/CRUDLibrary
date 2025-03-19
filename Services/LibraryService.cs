@@ -1,6 +1,7 @@
 ﻿using CRUDLibrary.Models.DBModels;
 using CRUDLibrary.Models.LibraryModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace CRUDLibrary.Services;
 
@@ -10,14 +11,16 @@ namespace CRUDLibrary.Services;
 public class LibraryService
 {
     private readonly LibraryContext _context;
+    private ILogger<LibraryService> _logger;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="LibraryService"/> class
     /// and ensures that the database is created.
     /// </summary>
-    public LibraryService()
+    public LibraryService(ILogger<LibraryService> logger, LibraryContext context)
     {
-        _context = new LibraryContext();
+        _logger = logger;
+        _context = context;
         _context.Database.EnsureCreated();
     }
 

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Input;
 using CRUDLibrary.Models.Enums;
 using System.Collections.ObjectModel;
+using Microsoft.Extensions.Logging;
 
 namespace CRUDLibrary.ViewModels;
 
@@ -42,21 +43,19 @@ public partial class InventoryPageViewModel : ViewModelBase
     /// </summary>
     public ICommand DeleteEntryCommand { get; }
 
+    private ILogger<InventoryPageViewModel> _logger;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="InventoryPageViewModel"/> class.
     /// </summary>
+    /// <param name="logger"></param>
     /// <param name="windowService">Service for managing windows and popups.</param>
-    public InventoryPageViewModel(IWindowService windowService)
+    /// <param name="libraryService"></param>
+    public InventoryPageViewModel(ILogger<InventoryPageViewModel> logger, IWindowService windowService, LibraryService libraryService)
     {
+        _logger = logger;
         _windowService = windowService;
-        if (App.ServiceProvider is not null)
-        {
-            _libraryService = App.ServiceProvider.GetRequiredService<LibraryService>();
-        }
-        else
-        {
-            throw new InvalidOperationException("ServiceProvider has not been initialised.");
-        }
+        _libraryService = libraryService;
 
         _bookTableCollection = [];
         _book = string.Empty;
@@ -66,9 +65,15 @@ public partial class InventoryPageViewModel : ViewModelBase
         SearchBookCommand = new AsyncRelayCommand(SearchBooksAsync);
         OpenPopupCommand = new AsyncRelayCommand(AddNewBook);
         OpenEditPopupCommand = new AsyncRelayCommand(EditBookInfo);
-        DeleteEntryCommand = new AsyncRelayCommand(Removebook);
+        DeleteEntryCommand = new AsyncRelayCommand(RemoveBook);
+    }
 
-        BookTableEntry.ToBookTableEntry(_libraryService.GetBooksAsync().Result, _bookTableCollection);
+    /// <summary>
+    /// Initializes the ViewModel by loading the initial book collection.
+    /// </summary>
+    public async Task InitializeAsync()
+    {
+        await ReloadBookCollectionAsync();
     }
 
     /// <summary>
@@ -104,8 +109,7 @@ public partial class InventoryPageViewModel : ViewModelBase
         NewBookTableEntry.Id = newId.ToString();
         BookTableCollection.Add(NewBookTableEntry);
 
-        BookGenre bookGenre;
-        bookGenre = genres.TryGetValue(NewBookTableEntry.Genre, out bookGenre) ? bookGenre : _defaultGenre;
+        var bookGenre = ParseGenre(NewBookTableEntry.Genre);
 
         await _libraryService.AddBookAsync(new Book
         {
@@ -120,6 +124,7 @@ public partial class InventoryPageViewModel : ViewModelBase
             Loans = []
         });
 
+        await ReloadBookCollectionAsync();
         NewBookTableEntry = null;
 
     }
@@ -150,16 +155,16 @@ public partial class InventoryPageViewModel : ViewModelBase
             return;
         }
 
-        BookGenre bookGenre;
-        bookGenre = genres.TryGetValue(NewBookTableEntry.Genre, out bookGenre) ? bookGenre : currentBook.Genre;
+        BookGenre genre = string.IsNullOrWhiteSpace(NewBookTableEntry.Genre)
+          ? currentBook.Genre
+          : ParseGenre(NewBookTableEntry.Genre);
 
-        currentBook.Title = NewBookTableEntry.Title.Equals(string.Empty) ? currentBook.Title : NewBookTableEntry.Title;
-        currentBook.Author = NewBookTableEntry.Author.Equals(string.Empty) ? currentBook.Author : NewBookTableEntry.Author;
-        currentBook.Genre = NewBookTableEntry.Genre.Equals(string.Empty) ? currentBook.Genre : bookGenre;
+        currentBook.Title = string.IsNullOrWhiteSpace(NewBookTableEntry.Title) ? currentBook.Title : NewBookTableEntry.Title;
+        currentBook.Author = string.IsNullOrWhiteSpace(NewBookTableEntry.Author) ? currentBook.Author : NewBookTableEntry.Author;
+        currentBook.Genre = genre;
 
         await _libraryService.UpdateBookAsync(currentBook);
-        BookTableCollection.Clear();
-        BookTableEntry.ToBookTableEntry(_libraryService.GetBooksAsync().Result, _bookTableCollection);
+        await ReloadBookCollectionAsync();
 
         NewBookTableEntry = null;
     }
@@ -167,7 +172,7 @@ public partial class InventoryPageViewModel : ViewModelBase
     /// <summary>
     /// Removes the selected book from the inventory.
     /// </summary>
-    private async Task Removebook()
+    private async Task RemoveBook()
     {
 
         if (SelectedBook is null || SelectedBook.Equals(BookTableEntry.Empty))
@@ -175,8 +180,7 @@ public partial class InventoryPageViewModel : ViewModelBase
             return;
         }
 
-        var currentBooks = await _libraryService.GetBooksAsync(int.Parse(SelectedBook.Id));
-        var currentBook = currentBooks.FirstOrDefault();
+        var currentBook = (await _libraryService.GetBooksAsync(int.Parse(SelectedBook.Id))).FirstOrDefault();
 
         if (currentBook is null)
         {
@@ -184,9 +188,7 @@ public partial class InventoryPageViewModel : ViewModelBase
         }
 
         await _libraryService.DeleteBookAsync(currentBook);
-
-        BookTableCollection.Clear();
-        BookTableEntry.ToBookTableEntry(_libraryService.GetBooksAsync().Result, _bookTableCollection);
+        await ReloadBookCollectionAsync();
     }
 
     /// <summary>
@@ -200,6 +202,32 @@ public partial class InventoryPageViewModel : ViewModelBase
 
         BookTableEntry.ToBookTableEntry(bookresults, _bookTableCollection);
 
+    }
+
+    /// <summary>
+    /// Reloads the book collection from the library service.
+    /// </summary>
+    private async Task ReloadBookCollectionAsync()
+    {
+        _bookTableCollection.Clear();
+
+        var books = await _libraryService.GetBooksAsync();
+        BookTableEntry.ToBookTableEntry(books, _bookTableCollection);
+    }
+
+    /// <summary>
+    /// Parses the provided genre string into a <see cref="BookGenre"/> enum.
+    /// </summary>
+    /// <param name="genreString">The genre as a string.</param>
+    /// <returns>The parsed genre or the default genre if not found.</returns>
+    private BookGenre ParseGenre(string genreString)
+    {
+        if (genres.TryGetValue(genreString, out var genre))
+        {
+            return genre;
+        }
+
+        return _defaultGenre;
     }
 
 }

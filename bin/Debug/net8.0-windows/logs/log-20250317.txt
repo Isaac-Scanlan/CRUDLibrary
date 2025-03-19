@@ -150,3 +150,106 @@ System.InvalidOperationException: No service for type 'CRUDLibrary.ViewModels.Lo
 2025-03-17 19:13:27.983 +00:00 [DBG] Resolved service: IWindowService
 2025-03-17 19:13:27.983 +00:00 [INF] Starting MainWindow
 2025-03-17 19:13:57.413 +00:00 [INF] App Exiting
+2025-03-17 19:38:42.585 +00:00 [INF] Logger configured.
+2025-03-17 19:38:42.662 +00:00 [INF] Dependency injection services registered.
+2025-03-17 19:38:42.674 +00:00 [INF] Service provider built successfully.
+2025-03-17 19:38:42.816 +00:00 [INF] CRUD Library Starting up
+2025-03-17 19:38:43.940 +00:00 [DBG] Pages successfully instantiated successfully
+2025-03-17 19:38:43.941 +00:00 [DBG] Navigation commands initialized.
+2025-03-17 19:38:43.941 +00:00 [INF] MainWindowViewModel constructed
+2025-03-17 19:38:43.941 +00:00 [DBG] Resolved service: MainWindowViewModel
+2025-03-17 19:38:43.942 +00:00 [DBG] Resolved service: InventoryPageViewModel
+2025-03-17 19:38:43.960 +00:00 [ERR] Failed to resolve service: LoansPageViewModel
+System.InvalidOperationException: No service for type 'CRUDLibrary.ViewModels.LoansPageViewModel' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at CRUDLibrary.App.ValidateServices() in C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\App.xaml.cs:line 140
+2025-03-17 19:38:43.960 +00:00 [DBG] Resolved service: MembersPageViewModel
+2025-03-17 19:38:43.960 +00:00 [DBG] Resolved service: LibraryService
+2025-03-17 19:38:43.960 +00:00 [DBG] Resolved service: IWindowService
+2025-03-17 19:38:43.960 +00:00 [INF] Starting MainWindow
+2025-03-17 19:38:45.424 +00:00 [INF] Navigating to _loansPage.
+2025-03-17 19:38:46.068 +00:00 [INF] Navigating to _membersPage.
+2025-03-17 19:38:46.999 +00:00 [INF] Navigating to _inventoryPage.
+2025-03-17 19:38:48.196 +00:00 [INF] App Exiting
+2025-03-17 19:40:22.713 +00:00 [INF] Logger configured.
+2025-03-17 19:40:22.761 +00:00 [INF] Dependency injection services registered.
+2025-03-17 19:40:22.769 +00:00 [INF] Service provider built successfully.
+2025-03-17 19:40:22.978 +00:00 [INF] CRUD Library Starting up
+2025-03-17 19:40:23.997 +00:00 [DBG] Pages successfully instantiated successfully
+2025-03-17 19:40:24.000 +00:00 [DBG] Navigation commands initialized.
+2025-03-17 19:40:24.000 +00:00 [INF] MainWindowViewModel constructed
+2025-03-17 19:40:24.000 +00:00 [DBG] Resolved service: MainWindowViewModel
+2025-03-17 19:40:24.001 +00:00 [DBG] Resolved service: InventoryPageViewModel
+2025-03-17 19:40:24.001 +00:00 [DBG] Resolved service: MembersPageViewModel
+2025-03-17 19:40:24.001 +00:00 [DBG] Resolved service: LibraryService
+2025-03-17 19:40:24.001 +00:00 [DBG] Resolved service: IWindowService
+2025-03-17 19:40:24.001 +00:00 [INF] Starting MainWindow
+2025-03-17 19:40:26.301 +00:00 [INF] App Exiting
+2025-03-17 19:41:41.309 +00:00 [INF]  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+2025-03-17 19:41:41.317 +00:00 [INF] Logger configured.
+2025-03-17 19:41:41.345 +00:00 [INF] Dependency injection services registered.
+2025-03-17 19:41:41.352 +00:00 [INF] Service provider built successfully.
+2025-03-17 19:41:41.459 +00:00 [INF] CRUD Library Starting up
+2025-03-17 19:41:42.556 +00:00 [DBG] Pages successfully instantiated successfully
+2025-03-17 19:41:42.558 +00:00 [DBG] Navigation commands initialized.
+2025-03-17 19:41:42.558 +00:00 [INF] MainWindowViewModel constructed
+2025-03-17 19:41:42.558 +00:00 [DBG] Resolved service: MainWindowViewModel
+2025-03-17 19:41:42.560 +00:00 [DBG] Resolved service: InventoryPageViewModel
+2025-03-17 19:41:42.561 +00:00 [DBG] Resolved service: MembersPageViewModel
+2025-03-17 19:41:42.561 +00:00 [DBG] Resolved service: LibraryService
+2025-03-17 19:41:42.561 +00:00 [DBG] Resolved service: IWindowService
+2025-03-17 19:41:42.561 +00:00 [INF] Starting MainWindow
+2025-03-17 19:41:44.932 +00:00 [INF] App Exiting
+2025-03-17 19:44:36.362 +00:00 [INF]  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+2025-03-17 19:44:36.373 +00:00 [INF] Logger configured. (App.xaml.cs)
+2025-03-17 19:44:36.404 +00:00 [INF] Dependency injection services registered. (App.xaml.cs)
+2025-03-17 19:44:36.412 +00:00 [INF] Service provider built successfully. (App.xaml.cs)
+2025-03-17 19:44:36.556 +00:00 [INF] CRUD Library Starting up. (App.xaml.cs)
+2025-03-17 19:44:37.660 +00:00 [DBG] Pages successfully instantiated successfully. (MainWindowViewModel.cs)
+2025-03-17 19:44:37.661 +00:00 [DBG] Navigation commands initialized. (MainWindowViewModel.cs)
+2025-03-17 19:44:37.661 +00:00 [INF] MainWindowViewModel constructed. (MainWindowViewModel.cs)
+2025-03-17 19:44:37.661 +00:00 [DBG] Resolved service: MainWindowViewModel. (App.xaml.cs)
+2025-03-17 19:44:37.662 +00:00 [DBG] Resolved service: InventoryPageViewModel. (App.xaml.cs)
+2025-03-17 19:44:37.662 +00:00 [DBG] Resolved service: MembersPageViewModel. (App.xaml.cs)
+2025-03-17 19:44:37.662 +00:00 [DBG] Resolved service: LibraryService. (App.xaml.cs)
+2025-03-17 19:44:37.662 +00:00 [DBG] Resolved service: IWindowService. (App.xaml.cs)
+2025-03-17 19:44:37.662 +00:00 [INF] Starting MainWindow. (App.xaml.cs)
+2025-03-17 19:44:39.853 +00:00 [INF] Navigating to _loansPage. (MainWindowViewModel.cs)
+2025-03-17 19:44:40.684 +00:00 [INF] Navigating to _membersPage. (MainWindowViewModel.cs)
+2025-03-17 19:44:41.553 +00:00 [INF] Navigating to _overduePage. (MainWindowViewModel.cs)
+2025-03-17 19:44:42.547 +00:00 [INF] Navigating to _membersPage. (MainWindowViewModel.cs)
+2025-03-17 19:44:43.302 +00:00 [INF] Navigating to _loansPage. (MainWindowViewModel.cs)
+2025-03-17 19:44:43.976 +00:00 [INF] Navigating to _inventoryPage. (MainWindowViewModel.cs)
+2025-03-17 19:44:45.770 +00:00 [INF] App Exiting. (App.xaml.cs)
+2025-03-17 19:53:02.255 +00:00 [INF]  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+2025-03-17 19:53:02.268 +00:00 [INF] Logger configured.
+2025-03-17 19:53:02.314 +00:00 [INF] (App.xaml.cs): Registering Dependency injection services.
+2025-03-17 19:53:02.314 +00:00 [INF] (App.xaml.cs): Dependency injection services registered.
+2025-03-17 19:53:02.324 +00:00 [INF] (App.xaml.cs): Service provider built successfully.
+2025-03-17 19:53:02.505 +00:00 [INF] (App.xaml.cs): CRUD Library Starting up
+2025-03-17 19:53:03.493 +00:00 [DBG] (MainWindowViewModel.cs): Pages successfully instantiated successfully.
+2025-03-17 19:53:03.494 +00:00 [DBG] (MainWindowViewModel.cs): Navigation commands initialized.
+2025-03-17 19:53:03.494 +00:00 [INF] (MainWindowViewModel.cs): MainWindowViewModel constructed
+2025-03-17 19:53:03.494 +00:00 [DBG] (App.xaml.cs): Resolved service: MainWindowViewModel
+2025-03-17 19:53:03.495 +00:00 [DBG] (App.xaml.cs): Resolved service: InventoryPageViewModel
+2025-03-17 19:53:03.496 +00:00 [DBG] (App.xaml.cs): Resolved service: MembersPageViewModel
+2025-03-17 19:53:03.496 +00:00 [DBG] (App.xaml.cs): Resolved service: LibraryService
+2025-03-17 19:53:03.496 +00:00 [DBG] (App.xaml.cs): Resolved service: IWindowService
+2025-03-17 19:53:03.496 +00:00 [INF] (App.xaml.cs): Starting MainWindow
+2025-03-17 19:55:53.721 +00:00 [INF] (App.xaml.cs): App Exiting
+2025-03-17 19:58:56.304 +00:00 [INF]  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+2025-03-17 19:58:56.313 +00:00 [INF] Logger configured.
+2025-03-17 19:58:56.345 +00:00 [INF] (App.xaml.cs): Registering Dependency injection services.
+2025-03-17 19:58:56.345 +00:00 [INF] (App.xaml.cs): Dependency injection services registered.
+2025-03-17 19:58:56.353 +00:00 [INF] (App.xaml.cs): Service provider built successfully.
+2025-03-17 19:58:56.506 +00:00 [INF] (App.xaml.cs): CRUD Library Starting up
+2025-03-17 19:58:57.560 +00:00 [DBG] (MainWindowViewModel.cs): Pages successfully instantiated successfully.
+2025-03-17 19:58:57.561 +00:00 [DBG] (MainWindowViewModel.cs): Navigation commands initialized.
+2025-03-17 19:58:57.561 +00:00 [INF] (MainWindowViewModel.cs): MainWindowViewModel constructed
+2025-03-17 19:58:57.561 +00:00 [DBG] (App.xaml.cs): Resolved service: MainWindowViewModel
+2025-03-17 19:58:57.563 +00:00 [DBG] (App.xaml.cs): Resolved service: InventoryPageViewModel
+2025-03-17 19:58:57.563 +00:00 [DBG] (App.xaml.cs): Resolved service: MembersPageViewModel
+2025-03-17 19:58:57.563 +00:00 [DBG] (App.xaml.cs): Resolved service: LibraryService
+2025-03-17 19:58:57.563 +00:00 [DBG] (App.xaml.cs): Resolved service: IWindowService
+2025-03-17 19:58:57.563 +00:00 [INF] (App.xaml.cs): Starting MainWindow
+2025-03-17 19:59:00.997 +00:00 [INF] (App.xaml.cs): App Exiting
