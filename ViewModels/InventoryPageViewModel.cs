@@ -1,10 +1,6 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using CRUDLibrary.Models.LibraryModels;
+﻿using CRUDLibrary.Models.LibraryModels;
 using CRUDLibrary.Services;
-using Microsoft.Extensions.DependencyInjection;
-using System.Windows.Input;
 using CRUDLibrary.Models.Enums;
-using System.Collections.ObjectModel;
 using Microsoft.Extensions.Logging;
 
 namespace CRUDLibrary.ViewModels;
@@ -13,35 +9,10 @@ namespace CRUDLibrary.ViewModels;
 /// ViewModel for managing the inventory page of the library system.
 /// Handles book searching, adding, editing, and deleting operations.
 /// </summary>
-public partial class InventoryPageViewModel : ViewModelBase
+public partial class InventoryPageViewModel : CrudPageViewModel<Book, BookTableEntry>
 {
     private string _book;
-    private BookTableEntry? _bookTableEntry;
-    private BookTableEntry _selectedBook;
     private readonly BookGenre _defaultGenre = BookGenre.Other;
-    private readonly IWindowService _windowService;
-    private readonly LibraryService _libraryService;
-    private ObservableCollection<BookTableEntry> _bookTableCollection;
-
-    /// <summary>
-    /// Command for searching books in the library.
-    /// </summary>
-    public ICommand SearchBookCommand { get; }
-
-    /// <summary>
-    /// Command for opening the add book popup.
-    /// </summary>
-    public ICommand OpenPopupCommand { get; }
-
-    /// <summary>
-    /// Command for opening the edit book popup.
-    /// </summary>
-    public ICommand OpenEditPopupCommand { get; }
-
-    /// <summary>
-    /// Command for deleting a selected book entry.
-    /// </summary>
-    public ICommand DeleteEntryCommand { get; }
 
     private ILogger<InventoryPageViewModel> _logger;
 
@@ -52,20 +23,13 @@ public partial class InventoryPageViewModel : ViewModelBase
     /// <param name="windowService">Service for managing windows and popups.</param>
     /// <param name="libraryService"></param>
     public InventoryPageViewModel(ILogger<InventoryPageViewModel> logger, IWindowService windowService, LibraryService libraryService)
+        : base(windowService, libraryService)
     {
         _logger = logger;
-        _windowService = windowService;
-        _libraryService = libraryService;
 
-        _bookTableCollection = [];
         _book = string.Empty;
-        _selectedBook = BookTableEntry.Empty;
-        _bookTableEntry = BookTableEntry.Empty;
-
-        SearchBookCommand = new AsyncRelayCommand(SearchBooksAsync);
-        OpenPopupCommand = new AsyncRelayCommand(AddNewBook);
-        OpenEditPopupCommand = new AsyncRelayCommand(EditBookInfo);
-        DeleteEntryCommand = new AsyncRelayCommand(RemoveBook);
+        SelectedEntry = null;
+        NewEntry = null;
     }
 
     /// <summary>
@@ -86,36 +50,34 @@ public partial class InventoryPageViewModel : ViewModelBase
     {
         _windowService.ShowBookPopup(title, author, genre, result =>
         {
-            NewBookTableEntry = result;
+            NewEntry = result;
         });
     }
 
-    /// <summary>
-    /// Adds a new book to the inventory.
-    /// </summary>
-    private async Task AddNewBook()
+    /// <inheritdoc/>
+    protected override async Task AddAsync()
     {
         OpenPopup(string.Empty, string.Empty, string.Empty);
 
-        if (NewBookTableEntry is null)
+        if (NewEntry is null)
         {
             return;
         }
 
-        int newId = BookTableCollection.Any()
-            ? BookTableCollection.Max(entry => int.Parse(entry.Id)) + 1
+        int newId = Table.Any()
+            ? Table.Max(entry => int.Parse(entry.Id)) + 1
             : 0;
 
-        NewBookTableEntry.Id = newId.ToString();
-        BookTableCollection.Add(NewBookTableEntry);
+        NewEntry.Id = newId.ToString();
+        Table.Add(NewEntry);
 
-        var bookGenre = ParseGenre(NewBookTableEntry.Genre);
+        var bookGenre = ParseGenre(NewEntry.Genre);
 
         await _libraryService.AddBookAsync(new Book
         {
             Id = newId,
-            Title = NewBookTableEntry.Title,
-            Author = NewBookTableEntry.Author,
+            Title = NewEntry.Title,
+            Author = NewEntry.Author,
             Description = "N/A",
             Genre = bookGenre,
             ISBN = Guid.NewGuid().ToString(),
@@ -125,60 +87,54 @@ public partial class InventoryPageViewModel : ViewModelBase
         });
 
         await ReloadBookCollectionAsync();
-        NewBookTableEntry = null;
+        NewEntry = null;
     }
 
-    /// <summary>
-    /// Edits an existing book entry in the inventory.
-    /// </summary>
-    private async Task EditBookInfo()
+    /// <inheritdoc/>
+    protected override async Task EditAsync()
     {
-
-        if (SelectedBook is null || SelectedBook.Equals(BookTableEntry.Empty))
+        if (SelectedEntry is null || SelectedEntry.Equals(BookTableEntry.Empty))
         {
             return;
         }
 
-        OpenPopup(SelectedBook.Title, SelectedBook.Author, SelectedBook.Genre.ToString());
+        OpenPopup(SelectedEntry.Title, SelectedEntry.Author, SelectedEntry.Genre.ToString());
 
-        if (NewBookTableEntry is null)
+        if (NewEntry is null)
         {
             return;
         }
 
-        var currentBook = (await _libraryService.GetBooksAsync(int.Parse(SelectedBook.Id))).FirstOrDefault();
+        var currentBook = (await _libraryService.GetBooksAsync(int.Parse(SelectedEntry.Id))).FirstOrDefault();
 
         if (currentBook is null)
         {
             return;
         }
 
-        BookGenre genre = string.IsNullOrWhiteSpace(NewBookTableEntry.Genre)
+        BookGenre genre = string.IsNullOrWhiteSpace(NewEntry.Genre)
           ? currentBook.Genre
-          : ParseGenre(NewBookTableEntry.Genre);
+          : ParseGenre(NewEntry.Genre);
 
-        currentBook.Title = string.IsNullOrWhiteSpace(NewBookTableEntry.Title) ? currentBook.Title : NewBookTableEntry.Title;
-        currentBook.Author = string.IsNullOrWhiteSpace(NewBookTableEntry.Author) ? currentBook.Author : NewBookTableEntry.Author;
+        currentBook.Title = string.IsNullOrWhiteSpace(NewEntry.Title) ? currentBook.Title : NewEntry.Title;
+        currentBook.Author = string.IsNullOrWhiteSpace(NewEntry.Author) ? currentBook.Author : NewEntry.Author;
         currentBook.Genre = genre;
 
         await _libraryService.UpdateBookAsync(currentBook);
         await ReloadBookCollectionAsync();
 
-        NewBookTableEntry = null;
+        NewEntry = null;
     }
 
-    /// <summary>
-    /// Removes the selected book from the inventory.
-    /// </summary>
-    private async Task RemoveBook()
+    /// <inheritdoc/>
+    protected override async Task DeleteAsync()
     {
-
-        if (SelectedBook is null || SelectedBook.Equals(BookTableEntry.Empty))
+        if (SelectedEntry is null || SelectedEntry.Equals(BookTableEntry.Empty))
         {
             return;
         }
 
-        var currentBook = (await _libraryService.GetBooksAsync(int.Parse(SelectedBook.Id))).FirstOrDefault();
+        var currentBook = (await _libraryService.GetBooksAsync(int.Parse(SelectedEntry.Id))).FirstOrDefault();
 
         if (currentBook is null)
         {
@@ -189,17 +145,13 @@ public partial class InventoryPageViewModel : ViewModelBase
         await ReloadBookCollectionAsync();
     }
 
-    /// <summary>
-    /// Searches for books based on the input criteria.
-    /// </summary>
-    private async Task SearchBooksAsync()
+    /// <inheritdoc/>
+    protected override async Task SearchAsync()
     {
-
         var bookresults = await _libraryService.GetBooksAsync(Book);
-        _bookTableCollection.Clear();
+        Table.Clear();
 
-        BookTableEntry.ToBookTableEntry(bookresults, _bookTableCollection);
-
+        BookTableEntry.ToBookTableEntry(bookresults, Table);
     }
 
     /// <summary>
@@ -207,10 +159,10 @@ public partial class InventoryPageViewModel : ViewModelBase
     /// </summary>
     private async Task ReloadBookCollectionAsync()
     {
-        _bookTableCollection.Clear();
+        Table.Clear();
 
         var books = await _libraryService.GetBooksAsync();
-        BookTableEntry.ToBookTableEntry(books, _bookTableCollection);
+        BookTableEntry.ToBookTableEntry(books, Table);
     }
 
     /// <summary>

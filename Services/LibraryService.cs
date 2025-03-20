@@ -111,13 +111,26 @@ public class LibraryService
     }
 
     /// <summary>
+    /// Gets all Library members from the database
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<LibraryMember>> GetMembersAsync(int idSearchTerm)
+    {
+        return await _context.Members
+                             .Where(b => b.Id == idSearchTerm)
+                             .ToListAsync();
+    }
+
+    /// <summary>
     /// Gets a particular Library member by name
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    public async Task<List<LibraryMember>>? GetMember(string name)
+    public async Task<List<LibraryMember>> GetMemberName(string name)
     {
-        return await _context.Members.Where(b => b.Name == name).ToListAsync() ?? [];
+        return await _context.Members
+                             .Where(b => b.Name.ToLower().Contains(name.ToLower()))
+                             .ToListAsync() ?? [];
     }
 
     /// <summary>
@@ -125,7 +138,7 @@ public class LibraryService
     /// </summary>
     /// <param name="email"></param>
     /// <returns></returns>
-    public async Task<List<LibraryMember>> GetMembersAsync(string email)
+    public async Task<List<LibraryMember>> GetMemberEmail(string email)
     {
         return await _context.Members
                              .Where(b => b.Email.ToLower().Contains(email.ToLower()))
