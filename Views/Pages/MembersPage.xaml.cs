@@ -1,5 +1,5 @@
 ﻿using CRUDLibrary.Services;
-using CRUDLibrary.ViewModels;
+using CRUDLibrary.ViewModels.Members;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
 

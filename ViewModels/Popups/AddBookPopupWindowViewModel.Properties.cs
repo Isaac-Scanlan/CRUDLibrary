@@ -1,4 +1,4 @@
-﻿namespace CRUDLibrary.ViewModels;
+﻿namespace CRUDLibrary.ViewModels.Popups;
 
 public partial class AddBookPopupWindowViewModel
 {

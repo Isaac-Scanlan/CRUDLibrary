@@ -1,12 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CRUDLibrary.ViewModels.Members;
 using System.Windows.Input;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.Popups;
 
 /// <summary>
 /// Represents the ViewModel for the Add Member Popup Window.

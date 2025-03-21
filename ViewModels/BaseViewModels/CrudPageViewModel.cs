@@ -3,7 +3,7 @@ using CRUDLibrary.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.BaseViewModels;
 
 /// <summary>
 /// A reusable abstract base ViewModel for pages that implement CRUD operations.
@@ -123,5 +123,4 @@ public abstract class CrudPageViewModel<TModel, TEntry> : ViewModelBase
     /// Deletes TModel entry based on the input criteria.
     /// </summary>
     protected abstract Task DeleteAsync();
-
 }

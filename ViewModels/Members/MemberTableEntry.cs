@@ -1,7 +1,7 @@
 ﻿using CRUDLibrary.Models.LibraryModels;
 using System.Collections.ObjectModel;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.Members;
 
 /// <summary>
 /// Represents a table entry for displaying member details in the library system.

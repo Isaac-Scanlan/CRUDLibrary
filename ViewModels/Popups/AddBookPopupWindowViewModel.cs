@@ -1,7 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CRUDLibrary.ViewModels.Inventory;
 using System.Windows.Input;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.Popups;
 
 /// <summary>
 /// Represents the ViewModel for the Add Book Popup Window.

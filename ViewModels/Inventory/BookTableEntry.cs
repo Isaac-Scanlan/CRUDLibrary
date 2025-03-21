@@ -1,7 +1,7 @@
 ﻿using CRUDLibrary.Models.LibraryModels;
 using System.Collections.ObjectModel;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.Inventory;
 
 /// <summary>
 /// Represents a table entry for displaying book details in the library system.

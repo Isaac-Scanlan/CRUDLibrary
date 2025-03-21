@@ -1,6 +1,6 @@
 ﻿using CRUDLibrary.Models.Enums;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.Inventory;
 
 public partial class InventoryPageViewModel
 {

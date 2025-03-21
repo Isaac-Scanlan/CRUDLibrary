@@ -1,18 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using CRUDLibrary.Models.Enums;
-using CRUDLibrary.Models.LibraryModels;
+﻿using CRUDLibrary.Models.LibraryModels;
 using CRUDLibrary.Services;
-using Microsoft.Extensions.DependencyInjection;
+using CRUDLibrary.ViewModels.BaseViewModels;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.Members;
 
 /// <summary>
 /// ViewModel for managing the members page of the library system.
@@ -22,7 +13,7 @@ public partial class MembersPageViewModel : CrudPageViewModel<LibraryMember, Mem
 {
     private string _member;
 
-    private ILogger<InventoryPageViewModel> _logger;
+    private ILogger<MembersPageViewModel> _logger;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="MembersPageViewModel"/> class.
@@ -30,7 +21,7 @@ public partial class MembersPageViewModel : CrudPageViewModel<LibraryMember, Mem
     /// <param name="logger"></param>
     /// <param name="windowService">Service for managing windows and popups.</param>
     /// <param name="libraryService"></param>
-    public MembersPageViewModel(ILogger<InventoryPageViewModel> logger, IWindowService windowService, LibraryService libraryService)
+    public MembersPageViewModel(ILogger<MembersPageViewModel> logger, IWindowService windowService, LibraryService libraryService)
         : base(windowService, libraryService)
     {
         _logger = logger;
@@ -96,7 +87,7 @@ public partial class MembersPageViewModel : CrudPageViewModel<LibraryMember, Mem
     protected override async Task EditAsync()
     {
 
-        if (SelectedEntry is null || SelectedEntry.Equals(BookTableEntry.Empty))
+        if (SelectedEntry is null || SelectedEntry.Equals(MemberTableEntry.Empty))
         {
             return;
         }
@@ -130,7 +121,7 @@ public partial class MembersPageViewModel : CrudPageViewModel<LibraryMember, Mem
     protected override async Task DeleteAsync()
     {
 
-        if (SelectedEntry is null || SelectedEntry.Equals(BookTableEntry.Empty))
+        if (SelectedEntry is null || SelectedEntry.Equals(MemberTableEntry.Empty))
         {
             return;
         }

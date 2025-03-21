@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.Members;
 
 public partial class MembersPageViewModel
 {

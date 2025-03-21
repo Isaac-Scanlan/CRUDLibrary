@@ -2,8 +2,9 @@
 using CRUDLibrary.Services;
 using CRUDLibrary.Models.Enums;
 using Microsoft.Extensions.Logging;
+using CRUDLibrary.ViewModels.BaseViewModels;
 
-namespace CRUDLibrary.ViewModels;
+namespace CRUDLibrary.ViewModels.Inventory;
 
 /// <summary>
 /// ViewModel for managing the inventory page of the library system.

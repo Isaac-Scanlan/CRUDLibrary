@@ -1,6 +1,7 @@
 ﻿using CRUDLibrary.Models.DBModels;
 using CRUDLibrary.Services;
 using CRUDLibrary.ViewModels;
+using CRUDLibrary.ViewModels.Members;
 using CRUDLibrary.Views.Pages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
