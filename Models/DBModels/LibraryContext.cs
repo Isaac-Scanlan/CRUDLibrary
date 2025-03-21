@@ -27,9 +27,9 @@ public class LibraryContext: DbContext
     /// <summary>
     /// Configures the database connection to use SQLite.
     /// </summary>
-    /// <param name="optionsBuilder">The options builder used to configure the context.</param>
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /// <param name="options">The options builder used to configure the context.</param>
+    public LibraryContext(DbContextOptions<LibraryContext> options)
+        : base(options)
     {
-        optionsBuilder.UseSqlite("Data Source=library.db");
     }
 }

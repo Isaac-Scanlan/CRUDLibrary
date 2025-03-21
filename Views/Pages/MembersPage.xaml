@@ -21,13 +21,13 @@
 
         <StackPanel  Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <components:ClearableTextBox Text="{Binding Member, UpdateSourceTrigger=PropertyChanged}" Height="40" Width="230" Margin="10, 10, 10 ,10" Panel.ZIndex="1"/>
-            <components:RoundButton Command="{Binding SearchMemberCommand}" HeightWidth="41" Margin="20, 10, 10 ,10" Panel.ZIndex="1" Grid.Row="1"/>
-            <components:AddButton Command="{Binding AddMemberCommand}" Width="40" Height="40" Margin="20,10"/>
-            <components:EditButton Command="{Binding EditMemberCommand}" Width="40" Height="40" Margin="20,10"/>
-            <Button Command="{Binding DeleteMemberCommand}" Style="{StaticResource DeleteButton}" Width="40" Height="40" Margin="20,10"/>
+            <components:RoundButton Command="{Binding SearchCommand}" HeightWidth="41" Margin="20, 10, 10 ,10" Panel.ZIndex="1" Grid.Row="1"/>
+            <components:AddButton Command="{Binding AddCommand}" Width="40" Height="40" Margin="20,10"/>
+            <components:EditButton Command="{Binding EditCommand}" Width="40" Height="40" Margin="20,10"/>
+            <Button Command="{Binding DeleteCommand}" Style="{StaticResource DeleteButton}" Width="40" Height="40" Margin="20,10"/>
         </StackPanel>
 
-        <components:DisplayTable ItemsSource="{Binding MemberTableCollection}" SelectedRow="{Binding SelectedMember, Mode=TwoWay}" 
+        <components:DisplayTable ItemsSource="{Binding Table}" SelectedRow="{Binding SelectedEntry, Mode=TwoWay}" 
                                  Panel.ZIndex="1" MinHeight="250" MaxWidth="1200"
                                  VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Grid.Row="2" Margin="50,0,50,50">
 
