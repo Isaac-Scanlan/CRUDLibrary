@@ -1,4 +1,6 @@
 ﻿using CRUDLibrary.ViewModels;
+using CRUDLibrary.ViewModels.Inventory;
+using CRUDLibrary.ViewModels.Members;
 
 namespace CRUDLibrary.Services;
 

@@ -1,4 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using CRUDLibrary.Services;
+using CRUDLibrary.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace CRUDLibrary.Views.Pages
 {
@@ -13,6 +17,13 @@ namespace CRUDLibrary.Views.Pages
         public LoansPage()
         {
             InitializeComponent();
+
+            //var windowService = App.ServiceProvider?.GetRequiredService<IWindowService>();
+            //var viewModel = App.ServiceProvider?.GetRequiredService<LoansPageViewModel>();
+
+            //DataContext = viewModel;
         }
+
+        
     }
 }

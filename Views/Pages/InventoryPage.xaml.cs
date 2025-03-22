@@ -1,5 +1,6 @@
 ﻿using CRUDLibrary.Services;
 using CRUDLibrary.ViewModels;
+using CRUDLibrary.ViewModels.Inventory;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;

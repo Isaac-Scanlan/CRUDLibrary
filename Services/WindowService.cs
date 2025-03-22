@@ -1,4 +1,7 @@
 ﻿using CRUDLibrary.ViewModels;
+using CRUDLibrary.ViewModels.Inventory;
+using CRUDLibrary.ViewModels.Members;
+using CRUDLibrary.ViewModels.Popups;
 using CRUDLibrary.Views.Windows;
 
 namespace CRUDLibrary.Services;
