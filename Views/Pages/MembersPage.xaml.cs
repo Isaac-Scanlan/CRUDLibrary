@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using CRUDLibrary.Services;
+using CRUDLibrary.ViewModels.Members;
+using Microsoft.Extensions.DependencyInjection;
+using System.Windows.Controls;
 
 namespace CRUDLibrary.Views.Pages
 {
@@ -10,9 +13,12 @@ namespace CRUDLibrary.Views.Pages
         /// <summary>
         /// Initialises components for Members Page
         /// </summary>
-        public MembersPage()
+        public MembersPage(MembersPageViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
+
+            Loaded += async (_, _) => await viewModel.InitializeAsync();
         }
     }
 }

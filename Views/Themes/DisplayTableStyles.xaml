@@ -24,13 +24,16 @@
         <Setter Property="GridLinesVisibility" Value="All"/>
         <Setter Property="RowHeaderWidth" Value="0"/>
         <Setter Property="CanUserResizeColumns" Value="True"/>
-        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="AutoGenerateColumns" Value="True"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
         <Setter Property="SelectionMode" Value="Single"/>
         <Setter Property="IsReadOnly" Value="True"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="ColumnHeaderHeight" Value="30"/>
         <Setter Property="RowHeight" Value="30"/>
         <Setter Property="HorizontalGridLinesBrush" Value="#e2e2e2"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="10,0,10,0"/>
@@ -151,13 +154,13 @@
                                     </Style>
                                 </DataGrid.RowHeaderStyle>
 
-                                <DataGrid.Columns>
+                                <!--<DataGrid.Columns>
                                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" />
                                     <DataGridTextColumn Header="Author" Binding="{Binding Author}" Width="*"/>
                                     <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" Width="*" />
                                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
                                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
-                                </DataGrid.Columns>
+                                </DataGrid.Columns>-->
 
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">

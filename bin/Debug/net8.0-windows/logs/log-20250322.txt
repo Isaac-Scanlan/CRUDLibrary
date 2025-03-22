@@ -1,0 +1,359 @@
+2025-03-22 00:59:43.378 +00:00 [INF]  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+2025-03-22 00:59:43.399 +00:00 [INF] Logger configured.
+2025-03-22 00:59:43.556 +00:00 [INF] (App.xaml.cs): Registering Dependency injection services.
+2025-03-22 00:59:43.560 +00:00 [INF] (App.xaml.cs): Dependency injection services registered.
+2025-03-22 00:59:43.569 +00:00 [INF] (App.xaml.cs): Service provider built successfully.
+2025-03-22 00:59:43.825 +00:00 [INF] (App.xaml.cs): CRUD Library Starting up
+2025-03-22 00:59:44.006 +00:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-03-22 00:59:44.555 +00:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2025-03-22 00:59:44.632 +00:00 [DBG] Entity Framework Core 9.0.2 initialized 'LibraryContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:9.0.2' with options: SensitiveDataLoggingEnabled 
+2025-03-22 00:59:44.641 +00:00 [DBG] Creating DbConnection.
+2025-03-22 00:59:44.647 +00:00 [DBG] Created DbConnection. (6ms).
+2025-03-22 00:59:44.650 +00:00 [DBG] Opening connection to database 'main' on server 'library.db'.
+2025-03-22 00:59:44.660 +00:00 [DBG] Opened connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:44.662 +00:00 [DBG] Disposing connection to database 'main' on server 'library.db'.
+2025-03-22 00:59:44.664 +00:00 [DBG] Disposed connection to database 'main' on server 'library.db' (0ms).
+2025-03-22 00:59:44.667 +00:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2025-03-22 00:59:44.668 +00:00 [DBG] Creating DbConnection.
+2025-03-22 00:59:44.668 +00:00 [DBG] Created DbConnection. (0ms).
+2025-03-22 00:59:44.671 +00:00 [DBG] Created DbCommand for 'ExecuteScalar' (3ms).
+2025-03-22 00:59:44.671 +00:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (5ms).
+2025-03-22 00:59:44.671 +00:00 [DBG] Opening connection to database 'main' on server 'library.db'.
+2025-03-22 00:59:44.672 +00:00 [DBG] Opened connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:44.679 +00:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-03-22 00:59:44.697 +00:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-03-22 00:59:44.699 +00:00 [DBG] Closing connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:44.701 +00:00 [DBG] Closed connection to database 'main' on server 'library.db' (2ms).
+2025-03-22 00:59:45.056 +00:00 [INF] (MainWindowViewModel.cs): Pages successfully instantiated successfully.
+2025-03-22 00:59:45.056 +00:00 [INF] (MainWindowViewModel.cs): Navigation commands initialized.
+2025-03-22 00:59:45.056 +00:00 [INF] (MainWindowViewModel.cs): MainWindowViewModel constructed
+2025-03-22 00:59:45.056 +00:00 [DBG] (App.xaml.cs): Resolved service: MainWindowViewModel
+2025-03-22 00:59:45.056 +00:00 [DBG] (App.xaml.cs): Resolved service: InventoryPageViewModel
+2025-03-22 00:59:45.056 +00:00 [DBG] (App.xaml.cs): Resolved service: MembersPageViewModel
+2025-03-22 00:59:45.056 +00:00 [DBG] (App.xaml.cs): Resolved service: LibraryContext
+2025-03-22 00:59:45.056 +00:00 [DBG] (App.xaml.cs): Resolved service: LibraryService
+2025-03-22 00:59:45.056 +00:00 [DBG] (App.xaml.cs): Resolved service: IWindowService
+2025-03-22 00:59:45.062 +00:00 [DBG] (App.xaml.cs): Resolved service: MainWindow
+2025-03-22 00:59:45.063 +00:00 [DBG] (App.xaml.cs): Resolved service: InventoryPage
+2025-03-22 00:59:45.065 +00:00 [DBG] (App.xaml.cs): Resolved service: MembersPage
+2025-03-22 00:59:45.065 +00:00 [INF] (App.xaml.cs): Starting MainWindow
+2025-03-22 00:59:45.436 +00:00 [DBG] Compiling query expression: 
+'DbSet<Book>()'
+2025-03-22 00:59:45.613 +00:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Book>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Book.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Book.Author (string) Required, 1], [Property: Book.Description (string) Required, 2], [Property: Book.Genre (BookGenre) Required, 3], [Property: Book.ISBN (string) Required, 4], [Property: Book.PublicationDate (DateTime) Required, 5], [Property: Book.Status (BookStatus) Required, 6], [Property: Book.Title (string) Required, 7] }
+        SELECT b.Id, b.Author, b.Description, b.Genre, b.ISBN, b.PublicationDate, b.Status, b.Title
+        FROM Books AS b) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Book.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Book.Author (string) Required, 1], [Property: Book.Description (string) Required, 2], [Property: Book.Genre (BookGenre) Required, 3], [Property: Book.ISBN (string) Required, 4], [Property: Book.PublicationDate (DateTime) Required, 5], [Property: Book.Status (BookStatus) Required, 6], [Property: Book.Title (string) Required, 7] }
+        SELECT b.Id, b.Author, b.Description, b.Genre, b.ISBN, b.PublicationDate, b.Status, b.Title
+        FROM Books AS b, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        Book entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            Book instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(Book);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: Book.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (Book)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: Book | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: Book | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book")]: 
+                        {
+                            return 
+                            {
+                                Book instance;
+                                instance = new Book();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<Author>k__BackingField = dataReader.GetString(1);
+                                instance.<Description>k__BackingField = dataReader.GetString(2);
+                                instance.<Genre>k__BackingField = Invoke(((EnumToNumberConverter<BookGenre, int>)((IReadOnlyProperty)[LIFTABLE Constant: Property: Book.Genre (BookGenre) Required | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book").FindProperty("Genre")]).GetTypeMapping().Converter).ConvertFromProviderTyped, dataReader.GetInt32(3));
+                                instance.<ISBN>k__BackingField = dataReader.GetString(4);
+                                instance.<PublicationDate>k__BackingField = dataReader.GetDateTime(5);
+                                instance.<Status>k__BackingField = Invoke(((EnumToNumberConverter<BookStatus, int>)((IReadOnlyProperty)[LIFTABLE Constant: Property: Book.Status (BookStatus) Required | Resolver: namelessParameter{3} => namelessParameter{3}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book").FindProperty("Status")]).GetTypeMapping().Converter).ConvertFromProviderTyped, dataReader.GetInt32(6));
+                                instance.<Title>k__BackingField = dataReader.GetString(7);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: Book | Resolver: namelessParameter{4} => namelessParameter{4}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(Book)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: CRUDLibrary.Models.DBModels.LibraryContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-03-22 00:59:45.636 +00:00 [DBG] Opening connection to database 'main' on server 'library.db'.
+2025-03-22 00:59:45.637 +00:00 [DBG] Opened connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:45.637 +00:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-03-22 00:59:45.637 +00:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 00:59:45.637 +00:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 00:59:45.638 +00:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Author", "b"."Description", "b"."Genre", "b"."ISBN", "b"."PublicationDate", "b"."Status", "b"."Title"
+FROM "Books" AS "b"
+2025-03-22 00:59:45.640 +00:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Author", "b"."Description", "b"."Genre", "b"."ISBN", "b"."PublicationDate", "b"."Status", "b"."Title"
+FROM "Books" AS "b"
+2025-03-22 00:59:45.670 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 1}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 2}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 3}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 4}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 5}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 6}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 7}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 8}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 9}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 10}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 11}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 12}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 13}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 14}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 15}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 16}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 17}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 18}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 19}'.
+2025-03-22 00:59:45.686 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 20}'.
+2025-03-22 00:59:45.689 +00:00 [DBG] Closing data reader to 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:45.690 +00:00 [DBG] A data reader for 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db' is being disposed after spending 48ms reading results.
+2025-03-22 00:59:45.690 +00:00 [DBG] Closing connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:45.691 +00:00 [DBG] Closed connection to database 'main' on server 'library.db' (0ms).
+2025-03-22 00:59:55.994 +00:00 [DBG] Context 'LibraryContext' started tracking 'Book' entity with key '{Id: 21}'.
+2025-03-22 00:59:55.996 +00:00 [DBG] SaveChanges starting for 'LibraryContext'.
+2025-03-22 00:59:55.997 +00:00 [DBG] DetectChanges starting for 'LibraryContext'.
+2025-03-22 00:59:56.006 +00:00 [DBG] DetectChanges completed for 'LibraryContext'.
+2025-03-22 00:59:56.041 +00:00 [DBG] Opening connection to database 'main' on server 'library.db'.
+2025-03-22 00:59:56.042 +00:00 [DBG] Opened connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:56.042 +00:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-03-22 00:59:56.043 +00:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 00:59:56.045 +00:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-03-22 00:59:56.047 +00:00 [DBG] Executing DbCommand [Parameters=[@p0='21', @p1='b' (Nullable = false) (Size = 1), @p2='N/A' (Nullable = false) (Size = 3), @p3='999', @p4='8037fd1f-8aa7-4116-82de-969149b29ce1' (Nullable = false) (Size = 36), @p5='2025-03-22T00:59:55.9853283+00:00' (DbType = DateTime), @p6='0', @p7='b' (Nullable = false) (Size = 1)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Books" ("Id", "Author", "Description", "Genre", "ISBN", "PublicationDate", "Status", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2025-03-22 00:59:56.053 +00:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='21', @p1='b' (Nullable = false) (Size = 1), @p2='N/A' (Nullable = false) (Size = 3), @p3='999', @p4='8037fd1f-8aa7-4116-82de-969149b29ce1' (Nullable = false) (Size = 36), @p5='2025-03-22T00:59:55.9853283+00:00' (DbType = DateTime), @p6='0', @p7='b' (Nullable = false) (Size = 1)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Books" ("Id", "Author", "Description", "Genre", "ISBN", "PublicationDate", "Status", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2025-03-22 00:59:56.054 +00:00 [DBG] Closing data reader to 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:56.055 +00:00 [DBG] A data reader for 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db' is being disposed after spending 1ms reading results.
+2025-03-22 00:59:56.055 +00:00 [DBG] Closing connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:56.055 +00:00 [DBG] Closed connection to database 'main' on server 'library.db' (0ms).
+2025-03-22 00:59:56.059 +00:00 [DBG] The 'Book' entity with key '{Id: 21}' tracked by 'LibraryContext' changed state from '"Added"' to '"Unchanged"'.
+2025-03-22 00:59:56.059 +00:00 [DBG] SaveChanges completed for 'LibraryContext' with 1 entities written to the database.
+2025-03-22 00:59:56.066 +00:00 [DBG] Opening connection to database 'main' on server 'library.db'.
+2025-03-22 00:59:56.066 +00:00 [DBG] Opened connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:56.066 +00:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-03-22 00:59:56.066 +00:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 00:59:56.066 +00:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 00:59:56.066 +00:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Author", "b"."Description", "b"."Genre", "b"."ISBN", "b"."PublicationDate", "b"."Status", "b"."Title"
+FROM "Books" AS "b"
+2025-03-22 00:59:56.066 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Author", "b"."Description", "b"."Genre", "b"."ISBN", "b"."PublicationDate", "b"."Status", "b"."Title"
+FROM "Books" AS "b"
+2025-03-22 00:59:56.066 +00:00 [DBG] Closing data reader to 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:56.066 +00:00 [DBG] A data reader for 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db' is being disposed after spending 0ms reading results.
+2025-03-22 00:59:56.066 +00:00 [DBG] Closing connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 00:59:56.066 +00:00 [DBG] Closed connection to database 'main' on server 'library.db' (0ms).
+2025-03-22 01:00:06.664 +00:00 [DBG] Compiling query expression: 
+'DbSet<Book>()
+    .Where(b => b.Id == __idSearchTerm_0)'
+2025-03-22 01:00:06.694 +00:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Book>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Book.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Book.Author (string) Required, 1], [Property: Book.Description (string) Required, 2], [Property: Book.Genre (BookGenre) Required, 3], [Property: Book.ISBN (string) Required, 4], [Property: Book.PublicationDate (DateTime) Required, 5], [Property: Book.Status (BookStatus) Required, 6], [Property: Book.Title (string) Required, 7] }
+        SELECT b.Id, b.Author, b.Description, b.Genre, b.ISBN, b.PublicationDate, b.Status, b.Title
+        FROM Books AS b
+        WHERE b.Id == @__idSearchTerm_0) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Book.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Book.Author (string) Required, 1], [Property: Book.Description (string) Required, 2], [Property: Book.Genre (BookGenre) Required, 3], [Property: Book.ISBN (string) Required, 4], [Property: Book.PublicationDate (DateTime) Required, 5], [Property: Book.Status (BookStatus) Required, 6], [Property: Book.Title (string) Required, 7] }
+        SELECT b.Id, b.Author, b.Description, b.Genre, b.ISBN, b.PublicationDate, b.Status, b.Title
+        FROM Books AS b
+        WHERE b.Id == @__idSearchTerm_0, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        Book entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            Book instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(Book);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: Book.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (Book)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: Book | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: Book | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book")]: 
+                        {
+                            return 
+                            {
+                                Book instance;
+                                instance = new Book();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<Author>k__BackingField = dataReader.GetString(1);
+                                instance.<Description>k__BackingField = dataReader.GetString(2);
+                                instance.<Genre>k__BackingField = Invoke(((EnumToNumberConverter<BookGenre, int>)((IReadOnlyProperty)[LIFTABLE Constant: Property: Book.Genre (BookGenre) Required | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book").FindProperty("Genre")]).GetTypeMapping().Converter).ConvertFromProviderTyped, dataReader.GetInt32(3));
+                                instance.<ISBN>k__BackingField = dataReader.GetString(4);
+                                instance.<PublicationDate>k__BackingField = dataReader.GetDateTime(5);
+                                instance.<Status>k__BackingField = Invoke(((EnumToNumberConverter<BookStatus, int>)((IReadOnlyProperty)[LIFTABLE Constant: Property: Book.Status (BookStatus) Required | Resolver: namelessParameter{3} => namelessParameter{3}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book").FindProperty("Status")]).GetTypeMapping().Converter).ConvertFromProviderTyped, dataReader.GetInt32(6));
+                                instance.<Title>k__BackingField = dataReader.GetString(7);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: Book | Resolver: namelessParameter{4} => namelessParameter{4}.Dependencies.Model.FindEntityType("CRUDLibrary.Models.LibraryModels.Book")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(Book)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: CRUDLibrary.Models.DBModels.LibraryContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-03-22 01:00:06.699 +00:00 [DBG] Opening connection to database 'main' on server 'library.db'.
+2025-03-22 01:00:06.699 +00:00 [DBG] Opened connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.699 +00:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-03-22 01:00:06.699 +00:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 01:00:06.699 +00:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 01:00:06.699 +00:00 [DBG] Executing DbCommand [Parameters=[@__idSearchTerm_0='21'], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Author", "b"."Description", "b"."Genre", "b"."ISBN", "b"."PublicationDate", "b"."Status", "b"."Title"
+FROM "Books" AS "b"
+WHERE "b"."Id" = @__idSearchTerm_0
+2025-03-22 01:00:06.699 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[@__idSearchTerm_0='21'], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Author", "b"."Description", "b"."Genre", "b"."ISBN", "b"."PublicationDate", "b"."Status", "b"."Title"
+FROM "Books" AS "b"
+WHERE "b"."Id" = @__idSearchTerm_0
+2025-03-22 01:00:06.699 +00:00 [DBG] Closing data reader to 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.699 +00:00 [DBG] A data reader for 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db' is being disposed after spending 0ms reading results.
+2025-03-22 01:00:06.699 +00:00 [DBG] Closing connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.699 +00:00 [DBG] Closed connection to database 'main' on server 'library.db' (0ms).
+2025-03-22 01:00:06.701 +00:00 [DBG] The 'Book' entity with key '{Id: 21}' tracked by 'LibraryContext' changed state from '"Unchanged"' to '"Deleted"'.
+2025-03-22 01:00:06.702 +00:00 [DBG] SaveChanges starting for 'LibraryContext'.
+2025-03-22 01:00:06.702 +00:00 [DBG] DetectChanges starting for 'LibraryContext'.
+2025-03-22 01:00:06.702 +00:00 [DBG] DetectChanges completed for 'LibraryContext'.
+2025-03-22 01:00:06.704 +00:00 [DBG] Opening connection to database 'main' on server 'library.db'.
+2025-03-22 01:00:06.704 +00:00 [DBG] Opened connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.704 +00:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-03-22 01:00:06.704 +00:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 01:00:06.704 +00:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 01:00:06.705 +00:00 [DBG] Executing DbCommand [Parameters=[@p0='21'], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "Books"
+WHERE "Id" = @p0
+RETURNING 1;
+2025-03-22 01:00:06.705 +00:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='21'], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "Books"
+WHERE "Id" = @p0
+RETURNING 1;
+2025-03-22 01:00:06.706 +00:00 [DBG] Closing data reader to 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.706 +00:00 [DBG] A data reader for 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db' is being disposed after spending 1ms reading results.
+2025-03-22 01:00:06.706 +00:00 [DBG] Closing connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.706 +00:00 [DBG] Closed connection to database 'main' on server 'library.db' (0ms).
+2025-03-22 01:00:06.708 +00:00 [DBG] The 'Book' entity with key '{Id: 21}' tracked by 'LibraryContext' changed state from '"Deleted"' to '"Detached"'.
+2025-03-22 01:00:06.708 +00:00 [DBG] SaveChanges completed for 'LibraryContext' with 1 entities written to the database.
+2025-03-22 01:00:06.712 +00:00 [DBG] Opening connection to database 'main' on server 'library.db'.
+2025-03-22 01:00:06.712 +00:00 [DBG] Opened connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.712 +00:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-03-22 01:00:06.712 +00:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 01:00:06.712 +00:00 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-03-22 01:00:06.712 +00:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Author", "b"."Description", "b"."Genre", "b"."ISBN", "b"."PublicationDate", "b"."Status", "b"."Title"
+FROM "Books" AS "b"
+2025-03-22 01:00:06.712 +00:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Author", "b"."Description", "b"."Genre", "b"."ISBN", "b"."PublicationDate", "b"."Status", "b"."Title"
+FROM "Books" AS "b"
+2025-03-22 01:00:06.712 +00:00 [DBG] Closing data reader to 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.712 +00:00 [DBG] A data reader for 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db' is being disposed after spending 0ms reading results.
+2025-03-22 01:00:06.712 +00:00 [DBG] Closing connection to database 'main' on server 'C:\Users\Isaac\source\repos\CRUDLibrary\CRUDLibrary\bin\Debug\net8.0-windows\library.db'.
+2025-03-22 01:00:06.712 +00:00 [DBG] Closed connection to database 'main' on server 'library.db' (0ms).
+2025-03-22 01:00:34.604 +00:00 [INF] (App.xaml.cs): App Exiting

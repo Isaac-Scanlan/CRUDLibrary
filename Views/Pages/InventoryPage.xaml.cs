@@ -1,6 +1,8 @@
 ﻿using CRUDLibrary.Services;
 using CRUDLibrary.ViewModels;
+using CRUDLibrary.ViewModels.Inventory;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CRUDLibrary.Views.Pages;
@@ -13,14 +15,12 @@ public partial class InventoryPage : Page
     /// <summary>
     /// Initialises components for InventoryPage
     /// </summary>
-    public InventoryPage()
+    public InventoryPage(InventoryPageViewModel viewModel)
     {
         InitializeComponent();
-
-        // Resolve dependencies from DI container
-        var windowService = App.ServiceProvider?.GetRequiredService<IWindowService>();
-        var viewModel = App.ServiceProvider?.GetRequiredService<InventoryPageViewModel>();
-
         DataContext = viewModel;
+
+        Loaded += async (_, _) => await viewModel.InitializeAsync();
     }
+
 }

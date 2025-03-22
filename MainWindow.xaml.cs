@@ -14,11 +14,9 @@ public partial class MainWindow : Window
     /// Initializes a new instance of the <see cref="MainWindow"/> class.
     /// Retrieves the ViewModel from the dependency injection container.
     /// </summary>
-    public MainWindow()
+    public MainWindow(MainWindowViewModel viewModel)
     {
         InitializeComponent();
-
-        // Resolve ViewModel from DI container
-        DataContext = App.ServiceProvider?.GetRequiredService<MainWindowViewModel>();
+        DataContext = viewModel;
     }
 }

@@ -15,7 +15,7 @@ A full-featured WPF desktop application for managing a library's book inventory,
   - Register new members
   - Track members with active loans
 
-- 🔄 **Loan Tracking**  
+- 🔄 **Loan Tracking**
   - Issue and return books
   - Manage due dates and overdue loans
 
