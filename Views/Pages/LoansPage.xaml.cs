@@ -1,5 +1,5 @@
 ﻿using CRUDLibrary.Services;
-using CRUDLibrary.ViewModels;
+using CRUDLibrary.ViewModels.Loans;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,14 +14,13 @@ namespace CRUDLibrary.Views.Pages
         /// <summary>
         /// Initialises components for Loans Page
         /// </summary>
-        public LoansPage()
+        public LoansPage(LoansPageViewModel viewModel)
         {
             InitializeComponent();
 
-            //var windowService = App.ServiceProvider?.GetRequiredService<IWindowService>();
-            //var viewModel = App.ServiceProvider?.GetRequiredService<LoansPageViewModel>();
+            DataContext = viewModel;
 
-            //DataContext = viewModel;
+            Loaded += async (_, _) => await viewModel.InitializeAsync();
         }
 
         

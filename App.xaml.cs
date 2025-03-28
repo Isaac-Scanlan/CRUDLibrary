@@ -2,6 +2,7 @@
 using CRUDLibrary.Services;
 using CRUDLibrary.ViewModels;
 using CRUDLibrary.ViewModels.Inventory;
+using CRUDLibrary.ViewModels.Loans;
 using CRUDLibrary.ViewModels.Members;
 using CRUDLibrary.Views.Pages;
 using Microsoft.EntityFrameworkCore;
@@ -132,10 +133,12 @@ public partial class App : Application
 
         services.AddTransient<InventoryPageViewModel>();
         services.AddTransient<MembersPageViewModel>();
+        services.AddTransient<LoansPageViewModel>();
 
         services.AddTransient<MainWindow>();
         services.AddTransient<InventoryPage>();
         services.AddTransient<MembersPage>();
+        services.AddTransient<LoansPage>();
 
         Log.Information("(App.xaml.cs): Dependency injection services registered.");
     }
@@ -151,7 +154,8 @@ public partial class App : Application
                 typeof(IWindowService),
                 typeof(MainWindow),
                 typeof(InventoryPage),
-                typeof(MembersPage)
+                typeof(MembersPage),
+                typeof(LoansPage)
             };
 
         foreach (var service in ViewModels)

@@ -1,5 +1,6 @@
 ﻿using CRUDLibrary.ViewModels;
 using CRUDLibrary.ViewModels.Inventory;
+using CRUDLibrary.ViewModels.Loans;
 using CRUDLibrary.ViewModels.Members;
 
 namespace CRUDLibrary.Services;
@@ -32,5 +33,7 @@ public interface IWindowService
     /// returning the member details as a <see cref="MemberTableEntry"/>.
     /// </param>
     void ShowMemberPopup(string name, string email, string phoneNumber, Action<MemberTableEntry> onPopupClosed);
+
+    void ShowLoansPopup(string book, string member, Action<LoanTableEntry> onPopupClosed);
 }
 

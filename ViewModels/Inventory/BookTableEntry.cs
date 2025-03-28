@@ -6,7 +6,7 @@ namespace CRUDLibrary.ViewModels.Inventory;
 /// <summary>
 /// Represents a table entry for displaying book details in the library system.
 /// </summary>
-public class BookTableEntry
+public class BookTableEntry : IEquatable<BookTableEntry>
 {
     /// <summary>
     /// Gets or sets the title of the book.
@@ -75,18 +75,32 @@ public class BookTableEntry
             table.Add(ToBookTableEntry(book));
         }
     }
+    
+    /// <inheritdoc/>
+    public override bool Equals(object? obj)
+    {
+        return obj is BookTableEntry other && Equals(other);
+    }
 
     /// <summary>
     /// Determines whether the specified <see cref="BookTableEntry"/> is equal to the current instance.
     /// </summary>
-    /// <param name="book">The book entry to compare with the current instance.</param>
+    /// <param name="other">The book entry to compare with the current instance.</param>
     /// <returns><c>true</c> if both book entries are equal; otherwise, <c>false</c>.</returns>
-    public bool Equals(BookTableEntry book)
+    public bool Equals(BookTableEntry? other)
     {
-        return Title == book.Title &&
-               Author == book.Author &&
-               Genre == book.Genre &&
-               Status == book.Status &&
-               Id == book.Id;
+        if (other is null) return false;
+
+        return Title == other.Title &&
+               Author == other.Author &&
+               Genre == other.Genre &&
+               Status == other.Status &&
+               Id == other.Id;
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Title, Author, Genre, Status, Id);
     }
 }
