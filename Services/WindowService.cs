@@ -1,5 +1,6 @@
 ﻿using CRUDLibrary.ViewModels;
 using CRUDLibrary.ViewModels.Inventory;
+using CRUDLibrary.ViewModels.Loans;
 using CRUDLibrary.ViewModels.Members;
 using CRUDLibrary.ViewModels.Popups;
 using CRUDLibrary.Views.Windows;
@@ -49,6 +50,20 @@ public class WindowService : IWindowService
     {
         var popupWindow = new MemberDataWindow();
         var popupViewModel = new MemberDataWindowViewModel(name, email, phoneNumber, input =>
+        {
+            popupWindow.DialogResult = true;
+            popupWindow.Close();
+            onPopupClosed(input);
+        });
+
+        popupWindow.DataContext = popupViewModel;
+        popupWindow.ShowDialog();
+    }
+
+    public void ShowLoansPopup(string book, string member, Action<LoanTableEntry> onPopupClosed)
+    {
+        var popupWindow = new LoanDataWindow();
+        var popupViewModel = new LoanDataWindowViewModel(book, member, input =>
         {
             popupWindow.DialogResult = true;
             popupWindow.Close();
