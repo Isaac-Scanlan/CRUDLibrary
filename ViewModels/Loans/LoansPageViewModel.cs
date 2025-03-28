@@ -7,6 +7,7 @@ using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,25 +61,52 @@ public partial class LoansPageViewModel : CrudPageViewModel<Loan, LoanTableEntry
     /// <inheritdoc/>
     protected override async Task AddAsync()
     {
-        OpenPopup(string.Empty, string.Empty);
-
-        if (NewEntry is null)
+        while (true)
         {
-            return;
+            OpenPopup(string.Empty, string.Empty);
+
+            if (NewEntry is null || NewEntry.Equals(new LoanTableEntry()))
+            {
+                return;
+            }
+
+            var book = (await _libraryService.GetBooksNameExactlyAsync(NewEntry.Book)).FirstOrDefault();
+            var member = (await _libraryService.GetMemberNameExactlyAsync(NewEntry.Borrower)).FirstOrDefault();
+            var loansCout = (await _libraryService.GetLoansAsync()).Count;
+
+            if (member is null || book is null)
+            {
+                continue;
+            }
+
+            if (book.Loans.Count > 0)
+            {
+                var lastLoan = book.Loans.LastOrDefault().ReturnDate;
+
+                if (lastLoan == null)
+                {
+                    continue;
+                }
+            }
+
+
+            var newLoan = new Loan()
+            {
+                BookID = book.Id,
+                Book = book,
+                BorrowerID = member.Id,
+                Borrower = member,
+                LoanDate = DateTime.UtcNow,
+                DueDate = DateTime.UtcNow.AddDays(7),
+            };
+
+            await _libraryService.AddLoanAsync(newLoan);
+
+            await _libraryService.SaveChanges();
+            await ReloadLoansCollectionAsync();
+            break;
         }
-
-        var loanResults = await _libraryService.GetLoansAsync();
-        var members = await _libraryService.GetMembersAsync();
-
-        List<Loan> loans = new List<Loan>();
-
-        for (int i = 0; i < members.Count; i++)
-        {
-
-
-        }
-
-        await _libraryService.SaveChanges();
+        
 
     }
 
