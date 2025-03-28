@@ -51,6 +51,17 @@ public class LibraryService
         await _context.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// Adds a new library loan to the database
+    /// </summary>
+    /// <param name="loan"></param>
+    /// <returns></returns>
+    public async Task AddLoanAsync(Loan loan)
+    {
+        _context.Loans.Add(loan);
+        await _context.SaveChangesAsync();
+    }
+
     #endregion
 
 
@@ -64,7 +75,8 @@ public class LibraryService
     /// <returns>A list of all books in the library.</returns>
     public async Task<List<Book>> GetBooksAsync()
     {
-        return await _context.Books.ToListAsync();
+        return await _context.Books.Include(m => m.Loans)
+                                    .ToListAsync();
     }
 
     /// <summary>
@@ -74,7 +86,9 @@ public class LibraryService
     /// <returns>A list of books with the specified title.</returns>
     public async Task<List<Book>>? GetBooks(string book)
     {
-        return await _context.Books.Where(b => b.Title == book).ToListAsync() ?? [];
+        return await _context.Books.Where(b => b.Title == book)
+                                    .Include(m => m.Loans)
+                                    .ToListAsync() ?? [];
     }
 
     /// <summary>
@@ -86,6 +100,7 @@ public class LibraryService
     {
         return await _context.Books
                              .Where(b => b.Title.ToLower().Contains(searchTerm.ToLower()))
+                             .Include(m => m.Loans)
                              .ToListAsync();
     }
 
@@ -98,8 +113,11 @@ public class LibraryService
     {
         return await _context.Books
                              .Where(b => b.Id == idSearchTerm)
+                             .Include(m => m.Loans)
                              .ToListAsync();
     }
+
+
 
     /// <summary>
     /// Gets all Library members from the database
@@ -107,7 +125,7 @@ public class LibraryService
     /// <returns></returns>
     public async Task<List<LibraryMember>> GetMembersAsync()
     {
-        return await _context.Members.ToListAsync();
+        return await _context.Members.Include(m => m.LoanHistory).ToListAsync();
     }
 
     /// <summary>
@@ -118,6 +136,7 @@ public class LibraryService
     {
         return await _context.Members
                              .Where(b => b.Id == idSearchTerm)
+                             .Include(m => m.LoanHistory)
                              .ToListAsync();
     }
 
@@ -130,6 +149,7 @@ public class LibraryService
     {
         return await _context.Members
                              .Where(b => b.Name.ToLower().Contains(name.ToLower()))
+                             .Include(m => m.LoanHistory)
                              .ToListAsync() ?? [];
     }
 
@@ -142,9 +162,65 @@ public class LibraryService
     {
         return await _context.Members
                              .Where(b => b.Email.ToLower().Contains(email.ToLower()))
+                             .Include(m => m.LoanHistory)
                              .ToListAsync();
     }
 
+
+
+
+    /// <summary>
+    /// Gets all Library members from the database
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<Loan>> GetLoansAsync()
+    {
+        return await _context.Loans
+                             .Include(l => l.Book)
+                             .Include(l => l.Borrower)
+                             .ToListAsync();
+    }
+
+    /// <summary>
+    /// Gets all Library members from the database
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<Loan>> GetLoansAsync(int idSearchTerm)
+    {
+        return await _context.Loans
+                             .Include(l => l.Book)
+                             .Include(l => l.Borrower)
+                             .Where(b => b.LoanID == idSearchTerm)
+                             .ToListAsync();
+    }
+
+    /// <summary>
+    /// Gets a particular Library member by name
+    /// </summary>
+    /// <param name="bookName"></param>
+    /// <returns></returns>
+    public async Task<List<Loan>> GetLoansByBookName(string bookName)
+    {
+        return await _context.Loans
+                             .Include(l => l.Book)
+                             .Include(l => l.Borrower)
+                             .Where(b => b.Book.Title.ToLower().Contains(bookName.ToLower()))
+                             .ToListAsync() ?? [];
+    }
+
+    /// <summary>
+    /// Gets a particular Library member by bookName
+    /// </summary>
+    /// <param name="memberName"></param>
+    /// <returns></returns>
+    public async Task<List<Loan>> GetLoansByBorrower(string memberName)
+    {
+        return await _context.Loans
+                             .Include(l => l.Book)
+                             .Include(l => l.Borrower)
+                             .Where(b => b.Borrower.Name.ToLower().Contains(memberName.ToLower()))
+                             .ToListAsync();
+    }
 
     #endregion
 
@@ -173,6 +249,23 @@ public class LibraryService
     {
         _context.Members.Update(member);
         await _context.SaveChangesAsync();
+    }
+
+    /// <summary>
+    /// Updates an existing loan in the database.
+    /// </summary>
+    /// <param name="loan">The loan to update.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    public async Task UpdateLoanAsync(Loan loan)
+    {
+        _context.Loans.Update(loan);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task AddLoansAsync(List<Loan> loans)
+    {
+        _context.Loans.AddRange(loans);      // Only track them
+        await _context.SaveChangesAsync();   // Save all at once
     }
 
     #endregion
@@ -205,4 +298,9 @@ public class LibraryService
     }
 
     #endregion
+
+    public async Task SaveChanges()
+    {
+        await _context.SaveChangesAsync();
+    }
 }
