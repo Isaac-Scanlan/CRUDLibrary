@@ -78,12 +78,12 @@ public class MainWindowViewModel: ViewModelBase
     /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
     /// Sets up navigation commands and default page.
     /// </summary>
-    public MainWindowViewModel(ILogger<MainWindowViewModel> logger, InventoryPage inventoryPage, MembersPage membersPage)
+    public MainWindowViewModel(ILogger<MainWindowViewModel> logger, InventoryPage inventoryPage, MembersPage membersPage, LoansPage loansPage)
     {
         _logger = logger;
 
         _inventoryPage = inventoryPage;
-        _loansPage = new LoansPage();
+        _loansPage = loansPage;
         _membersPage = membersPage;
         _overduePage = new OverduePage();
 
