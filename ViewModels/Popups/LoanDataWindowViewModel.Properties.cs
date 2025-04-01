@@ -27,4 +27,24 @@ public partial class LoanDataWindowViewModel
             OnPropertyChanged(nameof(NewBorrower));
         }
     }
+
+    public List<string> BooksList
+    {
+        get => _booksList;
+        set
+        {
+            _booksList = value;
+            OnPropertyChanged(nameof(BooksList));
+        }
+    }
+
+    public List<string> MembersList
+    {
+        get => _membersList;
+        set
+        {
+            _membersList = value;
+            OnPropertyChanged(nameof(MembersList));
+        }
+    }
 }

@@ -34,6 +34,6 @@ public interface IWindowService
     /// </param>
     void ShowMemberPopup(string name, string email, string phoneNumber, Action<MemberTableEntry> onPopupClosed);
 
-    void ShowLoansPopup(string book, string member, Action<LoanTableEntry> onPopupClosed);
+    void ShowLoansPopup(string book, string borrower, List<string> booksList, List<string> membersList, Action<LoanTableEntry> onPopupClosed);
 }
 

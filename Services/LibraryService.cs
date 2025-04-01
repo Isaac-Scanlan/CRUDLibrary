@@ -104,6 +104,14 @@ public class LibraryService
                              .ToListAsync();
     }
 
+    public async Task<List<Book>> GetBooksNameExactlyAsync(string searchTerm)
+    {
+        return await _context.Books
+                             .Where(b => b.Title.ToLower().Equals(searchTerm.ToLower()))
+                             .Include(m => m.Loans)
+                             .ToListAsync();
+    }
+
     /// <summary>
     /// Retrieves books that match the specified member ID.
     /// </summary>
@@ -149,6 +157,13 @@ public class LibraryService
     {
         return await _context.Members
                              .Where(b => b.Name.ToLower().Contains(name.ToLower()))
+                             .Include(m => m.LoanHistory)
+                             .ToListAsync() ?? [];
+    }
+    public async Task<List<LibraryMember>> GetMemberNameExactlyAsync(string name)
+    {
+        return await _context.Members
+                             .Where(b => b.Name.ToLower().Equals(name.ToLower()))
                              .Include(m => m.LoanHistory)
                              .ToListAsync() ?? [];
     }

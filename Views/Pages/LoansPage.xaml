@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel  Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <components:ClearableTextBox Text="{Binding LoanedBook, UpdateSourceTrigger=PropertyChanged}" Height="40" Width="230" Margin="10, 10, 10 ,10" Panel.ZIndex="1"/>
+            <components:ClearableTextBox Text="{Binding LoanedBook, UpdateSourceTrigger=PropertyChanged}" IsDropDownOpen="False"  Height="40" Width="230" Margin="10, 10, 10 ,10" Panel.ZIndex="1"/>
             <components:RoundButton Command="{Binding SearchCommand}" HeightWidth="41" Margin="20, 10, 10 ,10" Panel.ZIndex="1" Grid.Row="1"/>
             <components:AddButton Command="{Binding AddCommand}" Width="40" Height="40" Margin="20,10"/>
             <components:EditButton Command="{Binding EditCommand}" Width="40" Height="40" Margin="20,10"/>

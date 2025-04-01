@@ -15,18 +15,25 @@ public partial class LoanDataWindowViewModel : PopupWindowViewModel<Loan, LoanTa
     private string _borrower;
     private string _book;
 
+    private List<string> _booksList;
+    private List<string> _membersList;
+
+
     /// <summary>
     /// Initializes a new instance of the <see cref="AddBookPopupWindowViewModel"/> class.
     /// </summary>
     /// <param name="borrower">The initial borrower of the book.</param>
     /// <param name="book">The initial book of the book.</param>
-    /// <param name="genre">The initial genre of the book.</param>
+    /// <param name="booksList"></param>
+    /// <param name="membersList"></param>
     /// <param name="closeAction">An action that is invoked when the popup is closed, returning a <see cref="BookTableEntry"/>.</param>
-    public LoanDataWindowViewModel(string borrower, string book, Action<LoanTableEntry> closeAction)
+    public LoanDataWindowViewModel(string borrower, string book, List<string> booksList, List<string> membersList, Action<LoanTableEntry> closeAction)
         : base(closeAction)
     {
         _borrower = borrower;
         _book = book;
+        _booksList = booksList;
+        _membersList = membersList;
     }
 
     /// <summary>

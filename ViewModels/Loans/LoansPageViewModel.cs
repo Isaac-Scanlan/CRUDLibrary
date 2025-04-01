@@ -1,15 +1,9 @@
 ﻿using CRUDLibrary.Models.LibraryModels;
 using CRUDLibrary.Services;
 using CRUDLibrary.ViewModels.BaseViewModels;
-using CRUDLibrary.ViewModels.Inventory;
 using Microsoft.Extensions.Logging;
-using Serilog.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Formats.Tar;
 
 namespace CRUDLibrary.ViewModels.Loans;
 
@@ -17,29 +11,18 @@ public partial class LoansPageViewModel : CrudPageViewModel<Loan, LoanTableEntry
 {
     private string _loanedBook { get; set; }
 
-    private ILogger<LoansPageViewModel> _logger;
+    private List<string> _booksList;
+    private List<string> _membersList;
 
-    /// <summary>
-    /// Gets or sets the search query for filtering loans.
-    /// Notifies the UI when the value changes.
-    /// </summary>
-    public string LoanedBook
-    {
-        get => _loanedBook;
-        set
-        {
-            _loanedBook = value;
-            OnPropertyChanged(nameof(LoanedBook));
-        }
-    }
+    private ILogger<LoansPageViewModel> _logger;
 
 
     public LoansPageViewModel(ILogger<LoansPageViewModel> logger, IWindowService windowService, LibraryService libraryService) 
         : base(windowService, libraryService)
     {
         _logger = logger;
-
-        
+        _booksList = [];
+        _membersList = [];
     }
 
     /// <summary>
@@ -52,7 +35,7 @@ public partial class LoansPageViewModel : CrudPageViewModel<Loan, LoanTableEntry
 
     private void OpenPopup(string bookName, string member)
     {
-        _windowService.ShowLoansPopup(bookName, member, result =>
+        _windowService.ShowLoansPopup(bookName, member, BooksList, MembersList, result =>
         {
             NewEntry = result;
         });
@@ -89,7 +72,6 @@ public partial class LoansPageViewModel : CrudPageViewModel<Loan, LoanTableEntry
                 }
             }
 
-
             var newLoan = new Loan()
             {
                 BookID = book.Id,
@@ -106,8 +88,6 @@ public partial class LoansPageViewModel : CrudPageViewModel<Loan, LoanTableEntry
             await ReloadLoansCollectionAsync();
             break;
         }
-        
-
     }
 
     /// <inheritdoc/>
@@ -138,7 +118,14 @@ public partial class LoansPageViewModel : CrudPageViewModel<Loan, LoanTableEntry
     {
         Table.Clear();
 
-        var loans = await _libraryService.GetLoansAsync();
-        LoanTableEntry.ToLoanTableEntry(loans, Table);
+        LoanTableEntry.ToLoanTableEntry(await _libraryService.GetLoansAsync(), Table);
+
+        var foo = await _libraryService.GetBooksAsync();
+        var foo2 = foo.Select(p => p.Title);
+        BookList.AddRange(foo2);
+
+        MemberList.AddRange(
+            (await _libraryService.GetMembersAsync()).Select(p => p.Name)
+            );
     }
 }

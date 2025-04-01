@@ -16,19 +16,19 @@
 
             <StackPanel Orientation="Horizontal"  Margin="0,10">
                 <TextBlock Text="Name:  " Margin="0,0,30,0" VerticalAlignment="Center" Width="80"/>
-                <components:ClearableTextBox Height="40" Width="280"
+                <components:ClearableTextBox Height="40" Width="280" IsDropDownOpen="False"
                                           Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="Phone:  " Margin="0,0,30,0" VerticalAlignment="Center" Width="80"/>
-                <components:ClearableTextBox Height="40" Width="280"
+                <components:ClearableTextBox Height="40" Width="280" IsDropDownOpen="False"
                                          Text="{Binding NewEmail, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Text="Email:  " Margin="0,0,30,0" VerticalAlignment="Center" Width="80"/>
-                <components:ClearableTextBox Height="40" Width="280"
+                <components:ClearableTextBox Height="40" Width="280" IsDropDownOpen="False"
                                          Text="{Binding NewPhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
 

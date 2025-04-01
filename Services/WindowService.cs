@@ -60,10 +60,10 @@ public class WindowService : IWindowService
         popupWindow.ShowDialog();
     }
 
-    public void ShowLoansPopup(string book, string member, Action<LoanTableEntry> onPopupClosed)
+    public void ShowLoansPopup(string book, string borrower, List<string> booksList, List<string> membersList, Action<LoanTableEntry> onPopupClosed)
     {
         var popupWindow = new LoanDataWindow();
-        var popupViewModel = new LoanDataWindowViewModel(book, member, input =>
+        var popupViewModel = new LoanDataWindowViewModel(book, borrower, booksList, membersList, input =>
         {
             popupWindow.DialogResult = true;
             popupWindow.Close();
